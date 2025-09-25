@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontak & Layanan — PT Rupa Raya Indonesia</title>
+  <!-- Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+:root{
+  --bg:#ffffff; --panel:#f8fafc; --muted:#64748b; --text:#1e293b;
+  --ring:rgba(34,211,238,.35); --border:rgba(148,163,184,.2);
+  --accent-shadow:0 10px 30px rgba(139,92,246,.2);
+  --radius:16px; --radius-lg:24px; --maxw:1200px;
+  --brand:#0ea5e9; --ok:#16a34a; --err:#dc2626;
+  --nav-h: 76px; /* ruang untuk header fixed */
+}
+*,::before,::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:radial-gradient(circle at 20% -10%, rgba(34,211,238,.08), transparent 30%),
+             radial-gradient(circle at 80% 0%, rgba(139,92,246,.08), transparent 30%),
+             var(--bg);
+  line-height:1.65; letter-spacing:.2px;
+  padding-top: var(--nav-h);
+}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+.container{max-width:var(--maxw); margin-inline:auto; padding-inline:20px}
+
+/* ======================== Navigation ======================== */
+.nav{
+  position:fixed; top:0; left:0; right:0; height:var(--nav-h);
+  z-index:200;
+  backdrop-filter:saturate(1.2) blur(4px);
+  background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92));
+  border-bottom:1px solid var(--border);
+}
+.nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; height:100%; }
+.brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.5px }
+.menu{ display:flex; align-items:center; gap:20px }
+.menu a{ display:inline-block; padding:8px 12px; border-radius:10px; font-weight:600; color:#0f172a; transition: background-color .2s ease, color .2s ease, transform .12s ease, box-shadow .2s ease }
+.menu a:hover,.menu a:focus-visible{ background:#9bc6e7; color:#111827; transform:translateY(-1px); outline:none }
+.menu-toggle{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px }
+@media (max-width:900px){
+  .menu{ display:none }
+  .menu.is-open{ display:flex; position:absolute; right:16px; top:calc(var(--nav-h) + 8px); flex-direction:column; gap:12px; background:var(--panel); padding:14px; border:1px solid var(--border); border-radius:14px }
+  .menu-toggle{ display:inline-flex }
+}
+
+/* ========================= Contact grid & form ========================= */
+.contact-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:20px; align-items:start }
+@media (max-width:900px){ .contact-grid{ grid-template-columns:1fr } }
+.contact-form{ padding:18px; border:1px solid var(--border); border-radius:14px; background:#fff }
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+@media (max-width:640px){ .form-row{ grid-template-columns:1fr } }
+.form-group{ margin-bottom:8px }
+.contact-form label{ display:block; font-size:.85rem; color:#55627a; margin-bottom:4px; font-weight:600 }
+.contact-form input, .contact-form textarea, .contact-form select{
+  width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border);
+  background:#fff; color:var(--text); outline:none; box-shadow:0 0 0 0 var(--ring);
+  transition: box-shadow .15s ease, border-color .15s ease; font-size:14px
+}
+.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus{ box-shadow:0 0 0 4px var(--ring); border-color:#94a3b8 }
+.contact-form textarea{ min-height:120px; resize:vertical }
+.contact-actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px }
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid var(--border); font-size:14px }
+.btn-primary{ border:none; background:#4ea3ff; color:#fff; box-shadow:0 4px 12px rgba(0,123,255,.28) }
+.btn-primary:hover{ background:#006ee4 }
+/* ---- Tambahan: style tombol nonaktif ---- */
+.btn-primary[disabled],
+.btn-primary[aria-disabled="true"]{
+  opacity:.5;
+  cursor:not-allowed;
+  filter:grayscale(.2);
+  box-shadow:none;
+}
+
+.map-wrap{ padding:18px; border:1px solid var(--border); border-radius:14px; background:#fff }
+.map-shell{ position:relative }
+.map-frame{ width:100%; min-height:420px; border-radius:12px; border:1px solid var(--border); display:block }
+@media (min-width:1200px){ .map-frame{ min-height:450px } }
+@media (max-width:900px){ .map-frame{ min-height:380px } }
+
+/* Footer */
+footer{padding:40px 0; border-top:1px solid var(--border); color:#64748b}
+.foot{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center}
+.social{display:flex; gap:12px}
+.social .pill{display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:999px; border:1px solid var(--border); background:#fff; color:#1e293b; transition:all .35s ease; box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.social a[aria-label="Instagram"]:hover{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; transform:translateY(-3px) scale(1.08); box-shadow:0 6px 20px rgba(220,39,67,.45)}
+.social a[aria-label="YouTube"]:hover{background:#ff0000; color:#fff; transform:translateY(-3px) scale(1.08); box-shadow:0 6px 20px rgba(255,0,0,.45)}
+
+/* Reveal */
+.reveal{opacity:0; transform:translateY(20px); transition:.6s opacity ease, .6s transform ease}
+.reveal.is-visible{opacity:1; transform:none}
+
+/* WA Bubble */
+.wa-bubble{position:fixed; bottom:20px; right:20px; z-index:99999; display:inline-flex; align-items:center; gap:10px; text-decoration:none; user-select:none; font:600 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wa-bubble__btn{width:56px; height:56px; border-radius:999px; display:grid; place-items:center; background:#25D366; color:#fff; box-shadow:0 12px 30px rgba(37,211,102,.35), 0 2px 6px rgba(0,0,0,.08); transition:transform .15s ease, box-shadow .15s ease, opacity .2s ease}
+.wa-bubble__btn:active{transform:translateY(1px) scale(.98)}
+@media (max-width:480px){ .wa-bubble__label{display:none} }
+
+/* ===== SERVICES (scoped) ===== */
+#services{ --svc-text:#0b0f19; --svc-muted:#6b7280; --svc-border:rgba(15,23,42,.16); --svc-pad:18px; --svc-shadow:0 18px 40px rgba(15,23,42,.08); --svc-brand:#0ea5e9; margin-top:40px; color:var(--svc-text) }
+#services .row{display:grid; grid-template-columns:repeat(3,1fr); background:#ffffff; padding-top:16px}
+#services .col{padding:35px var(--svc-pad); background:#ffffff}
+#services .col + .col{border-left:1px solid var(--svc-border)}
+#services .head{margin:0 0 10px; font:800 16px/1.2 system-ui,-apple-system,Segoe UI; letter-spacing:.18em; text-transform:uppercase}
+#services .list{list-style:none; margin:0; padding:0}
+#services .svc-btn{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 12px; margin:4px 0; border:1px solid transparent; border-radius:0; background:transparent; color:var(--svc-text); font-weight:700; letter-spacing:.02em; cursor:pointer; transition:background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease,border-radius .18s ease,transform .08s ease }
+#services .svc-btn:hover,#services .svc-btn:focus-visible{ background:var(--svc-brand); color:#fff; border-color:var(--svc-brand); border-radius:10px; box-shadow:0 10px 24px rgba(14,165,233,.25); transform:translateY(-1px); outline:0 }
+@media (max-width:1024px){#services .row{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){#services .row{grid-template-columns:1fr}}
+
+/* Modal */
+.modal-overlay{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; justify-content:center; align-items:center; z-index:1000; padding:0}
+.modal-overlay[aria-hidden="false"]{display:flex}
+.modal-content{background:#fff; border-radius:0; width:100vw; height:100vh; max-width:100vw; max-height:100vh; overflow:auto; position:relative; box-shadow:none; padding:clamp(8px,1.2vw,20px)}
+.modal-close{position:absolute; top:10px; right:10px; background:rgba(0,0,0,.55); border:none; width:30px; height:30px; border-radius:999px; font-size:18px; cursor:pointer; color:#fff; display:grid; place-items:center}
+.modal-close:hover{background:rgba(0,0,0,.75)}
+.media-wide{display:block; width:calc(100% - clamp(24px,4vw,64px)); max-width:1800px; height:auto; margin:clamp(8px,1vw,14px) auto; border-radius:12px; box-shadow:var(--svc-shadow)}
+.media-row{display:flex; gap:clamp(10px,1.2vw,16px); width:100%; margin:10px 0}
+.media-row>*{flex:1; min-width:0}
+.modal-content .head{font:800 clamp(24px,2.6vw,44px)/1.1 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; letter-spacing:.18em; text-transform:uppercase; margin:0 0 18px}
+  </style>
+</head>
+<body>
+
+  <!-- ======================== WhatsApp Floating Bubble ======================== -->
+  <a id="waBubble" class="wa-bubble" href="https://wa.me/6288804155370?text=Halo%20Kak%2C%20saya%20mau%20tentang%20%20PT%20Rupa%20Raya" target="_blank" rel="noopener" aria-label="Chat via WhatsApp">
+    <span class="wa-bubble__btn" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path fill="#fff" d="M26.2 5.8A12.2 12.2 0 0 0 4.6 22.7L3 29l6.5-1.7A12.2 12.2 0 1 0 26.2 5.8Zm-5.4 17.6c-2 .0-3.9-.6-5.6-1.7-1.6-1-2.9-2.4-3.9-4.1-1-1.7-1.5-3.5-1.5-5.4 0-.6.1-1.2.3-1.8.2-.6.7-1 1.3-1.1.3-.1.6 0 .9.1l2.1.9c.2.1.4.3.5.5.1.2.1.5 0 .8l-.5 1.6c-.1.3-.1.6 0 .9.5 1.2 1.3 2.2 2.4 3 1 .7 2.1 1.2 3.3 1.4.3.1.6 0 .9-.1l1.6-.6c.2-.1.5-.1.8 0 .2.1.4.3.5.5l.9 2.2c.1.3.2.6.1.9-.1.6-.5 1.1-1.1 1.3-.6.3-1.3.4-2 .4Z"/>
+      </svg>
+    </span>
+    <span class="wa-bubble__label"></span>
+  </a>
+
+  <nav class="nav" role="navigation" aria-label="Navigasi utama">
+    <div class="container nav-wrap">
+      <div class="brand">
+        <img src="assets/Logo_rri.jpg" alt="Logo PT Rupa Raya Indonesia" style="width:40px; height:55px; border-radius:5px; object-fit:contain;" />
+        <span> PT Rupa Raya Indonesia</span>
+      </div>
+
+    
+      <button id="menuToggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+
+      <div class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="company.html">Company</a>
+        <a href="team.html">Team</a>
+        <a href="servis.html" aria-current="page">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================== CONTACT ======================== -->
+  <section aria-labelledby="hubungiKami">
+    <div class="container">
+      <div class="contact-grid">
+        <div><h2 id="hubungiKami" class="h2">Hubungi Kami</h2></div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-form reveal">
+          <h3>Kirim Pesan</h3>
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <input type="hidden" name="access_key" value="ac91be79-d281-4b35-a3a1-a6b6f92de691" />
+            <input type="hidden" name="from_name" value="PT Rupa Raya Indonesia Website" />
+            <input type="hidden" name="subject" value="Kontak Baru dari Website PT Rupa Raya Indonesia" />
+            <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" style="display:none !important" />
+
+            <div class="form-group">
+              <label for="name">Nama Lengkap</label>
+              <input type="text" id="name" name="name" required placeholder="Masukkan nama lengkap Anda" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Masukan Email Anda" />
+              </div>
+              <div class="form-group">
+                <label for="phone">WA</label>
+                <input type="tel" id="phone" name="phone" placeholder="Masukan Wa Anda" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service">Layanan yang Dibutuhkan</label>
+              <select id="service" name="service" required>
+                <option value="">Pilih layanan</option>
+                <option value="CG Perspektif Arsitektur">CG Perspektif Arsitektur</option>
+                <option value="3D Modeling & Texturing">3D Modeling & Texturing</option>
+                <option value="3D Movie & Animasi">3D Movie & Animasi</option>
+                <option value="VR/AR Interaktif">VR/AR Interaktif</option>
+                <option value="Panorama 360°">Panorama 360°</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Pesan</label>
+              <textarea id="message" name="message" rows="6" required placeholder="Ceritakan kebutuhan proyek Anda secara detail..."></textarea>
+            </div>
+
+            <div class="contact-actions" style="margin-top:16px">
+              <button id="submitBtn" class="btn btn-primary" type="submit" disabled aria-disabled="true">Kirim Pesan</button>
+            </div>
+
+        
+            <p id="formStatus" role="status" aria-live="polite" style="margin-top:12px; font-weight:600; color:var(--ok); display:none">Pesan berhasil dikirim. Terima kasih! ✅</p>
+            <p id="formError" role="alert" aria-live="assertive" style="margin-top:12px; font-weight:600; color:var(--err); display:none">Gagal mengirim. Coba lagi ya. ❌</p>
+          </form>
+        </div>
+
+        <div class="map-wrap">
+          <h5 class="map-title">Alamat</h5>
+          <div class="map-shell">
+            <iframe id="mapFrame" class="map-frame" title="Peta kantor" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=Makassar%20Panakkukang%20Pettarani&output=embed"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- ======================== SERVICES SECTION ======================== -->
+  <section id="services" aria-label="Layanan PT Rupa Raya Indonesia" class="services-wrap">
+    <div class="row">
+      <div class="col">
+        <h2 class="head">ARCHITECTURAL VISUALIZATION</h2>
+        <ul class="list">
+          <li><button class="svc-btn" onclick="showModal('modal-perspektif-cg')">Perspektif CG</button></li>
+          <li><button class="svc-btn" onclick="showModal('modal-urutan-proyek')">Urutan Proyek</button></li>
+          <li><button class="svc-btn" onclick="showModal('modal-penataan-rumah')">Penataan Rumah</button></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2 class="head">GUIDES & VR</h2>
+        <ul class="list">
+          <li><button class="svc-btn" onclick="showModal('modal-video-panduan')">Video Panduan</button></li>
+          <li><button class="svc-btn" onclick="showModal('modal-simulasi-vr')">Simulasi VR</button></li>
+          <li><button class="svc-btn" onclick="showModal('modal-vr-tanpa-masuk')">VR Tanpa Perlu Masuk</button></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h2 class="head">SUPPORT</h2>
+        <ul class="list">
+          <li><button class="svc-btn" onclick="showModal('modal-aliran-produksi')">Aliran Produksi</button></li>
+          <li><button class="svc-btn" onclick="showModal('modal-tanya-jawab-umum')">Tanya Jawab Umum</button></li>
+          <li><button class="svc-btn" onclick="showModal('modal-peraturan-pelayanan')">Peraturan Layanan</button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> PT Rupa Raya Indonesia • Semua hak cipta dilindungi</div>
+      <div class="social">
+        <a class="pill" href="https://www.instagram.com/ruparayaindonesia" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 4.25a5.25 5.25 0 1 1 0 10.5a5.25 5.25 0 0 1 0-10.5zm5.88-.88a1.13 1.13 0 1 1 0 2.26a1.13 1.13 0 0 1 0-2.26z"/>
+          </svg>
+        </a>
+        <a class="pill" href="https://www.youtube.com/@ruparaya" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23.498 6.186a2.99 2.99 0 0 0-2.106-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.392.566a2.99 2.99 0 0 0-2.106 2.12C0 8.09 0 12 0 12s0 3.91.502 5.814a2.99 2.99 0 0 0 2.106 2.12C4.495 20.5 12 20.5 12 20.5s7.505 0 9.392-.566a2.99 2.99 0 0 0 2.106-2.12C24 15.91 24 12 24 12s0-3.91-.502-5.814zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== SERVICES MODALS ======================== -->
+  <!-- Modal Perspektif CG -->
+  <div id="modal-perspektif-cg" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-perspektif-cg')" aria-label="Tutup modal">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>Perspektif CG</center>
+      </h2>
+      <style>
+        #modal-perspektif-cg .media-wide{
+          display:block;
+          width:50%;
+          height:auto;
+          max-width:520px;
+          margin:0 auto 16px;
+          object-fit:cover;
+        }
+        #modal-perspektif-cg .media-wide:last-child{ margin-bottom:0; }
+      </style>
+      <img class="media-wide" src="assets/perspektif-cg.png" alt="Gambar Perspektif CG" />
+      <div style="font-size:16px;color:var(--svc-text);line-height:1.4;white-space:normal;margin:0 auto;max-width:70ch;padding:8px">
+        <p>Layanan perspektif CG menghadirkan visualisasi arsitektur yang realistis dan detail untuk membantu Anda mempresentasikan desain bangunan dengan lebih menarik. Gambar berkualitas tinggi ini sangat efektif untuk promosi, presentasi penjualan, dan perencanaan konstruksi. Kami menghasilkan gambar yang sesuai standar industri dengan resolusi tinggi yang dapat digunakan untuk berbagai keperluan pemasaran.</p>
+        <h3>Contoh Produksi</h3>
+        <img class="media-wide" src="assets/contoh-produksi.png" alt="Contoh produksi" />
+        <div style="max-width:80ch;font-size:16px;color:var(--svc-muted);line-height:1.5;margin-top:24px">
+          <p><strong>Rincian produksi:</strong> Satu bidikan perspektif CG eksterior atau interior (hingga 120m²), resolusi tinggi setara dengan pencetakan ukuran A2</p>
+          <p><strong>Formulir pengiriman:</strong> file .jpg</p>
+          <p><strong>Bahan yang dibutuhkan:</strong> Denah lantai, elevasi, gambar tata letak, jadwal penyelesaian, dan alamat lokal (Google Maps)</p>
+          <p><strong>Tenggat waktu:</strong> Dalam 5 hari kerja (tidak termasuk periode konfirmasi pemeriksaan produksi). <em>*Permintaan awal ±10 hari kerja.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal VR Tanpa Perlu Masuk -->
+  <div id="modal-vr-tanpa-masuk" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-vr-tanpa-masuk')" aria-label="Tutup modal">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>VR Tanpa Perlu Masuk</center>
+      </h2>
+      <style>
+        #modal-vr-tanpa-masuk .media-wide{
+          display:block;
+          width:50%;
+          height:auto;
+          max-width:520px;
+          margin:0 auto 16px;
+          object-fit:cover;
+        }
+        #modal-vr-tanpa-masuk .media-wide:last-child{ margin-bottom:0; }
+      </style>
+      <div style="font-size:16px;color:var(--svc-text);line-height:1.4;white-space:normal;margin:0 auto;max-width:70ch;padding:8px">
+        <p>Layanan VR tanpa perlu masuk ke lokasi memungkinkan Anda melihat properti secara virtual tanpa harus datang ke tempat. Teknologi VR 360° memberikan pengalaman imersif yang memudahkan calon pembeli untuk mengeksplorasi properti dari mana saja. Cocok untuk promosi properti jarak jauh dan pemasaran digital.</p>
+        <h3>Spesifikasi produksi HG (High Grade)</h3>
+        <img class="media-wide" src="assets/hg-clas.png" alt="HG class" />
+        <ul>
+          <li>Fungsi pergantian tampilan siang/malam</li>
+          <li>360° VR di setiap ruangan</li>
+          <li>Tampilan peta denah lantai</li>
+          <li>Tombol tautan pertanyaan</li>
+          <li>Logo perusahaan</li>
+          <li>Kompatibel ponsel pintar & kacamata VR</li>
+        </ul>
+        <h3>Spesifikasi produksi MG (Master Grade)</h3>
+        <img class="media-wide" src="assets/gh-master.png" alt="Master class" />
+        <ul>
+          <li>Autopilot (tur otomatis)</li>
+          <li>Tautan pop-up (gambar/video, hingga 5 lokasi)</li>
+          <li>Simulasi warna (pilar/balok/lantai dsb.)</li>
+          <li>Tangkapan layar</li>
+          <li>Tampilkan/sembunyikan thumbnail</li>
+          <li>Audio ON/OFF</li>
+        </ul>
+        <p style="margin-top:16px">Layanan VR memberikan pengalaman visual yang mendalam untuk membantu calon pembeli memahami layout dan desain properti secara menyeluruh sebelum mengambil keputusan pembelian.</p>
+        <div style="max-width:80ch;font-size:16px;color:var(--svc-muted);line-height:1.5;margin-top:24px">
+          <p><strong>Rincian produksi:</strong> Tampilan eksterior/interior setiap ruangan produksi VR 360°</p>
+          <p><strong>Formulir pengiriman:</strong> URL (dengan kode QR)</p>
+          <p><strong>Bahan yang dibutuhkan:</strong> Denah, elevasi, tata letak, jadwal penyelesaian</p>
+          <p><strong>Tenggat waktu:</strong> ±25 hari kerja (permintaan pertama ±35 hari)</p>
+          <p><strong>Catatan:</strong> Biaya pemeliharaan server program 30.000 yen/bulan (batas 100GB)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Urutan Proyek -->
+  <div id="modal-urutan-proyek" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-urutan-proyek')" aria-label="Tutup modal">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>Urutan Proyek</center>
+      </h2>
+      <style>
+        #modal-urutan-proyek .media-wide{
+          display:block;
+          width:50%;
+          height:auto;
+          max-width:520px;
+          margin:0 auto 16px;
+          object-fit:cover;
+        }
+        #modal-urutan-proyek .media-wide:last-child{ margin-bottom:0; }
+      </style>
+      <div style="font-size:16px;color:var(--svc-text);line-height:1.4;white-space:normal;margin:0 auto;max-width:70ch;padding:8px">
+        <p>Urutan proyek menjelaskan tahapan sistematis dalam pelaksanaan proyek visualisasi arsitektur. Mulai dari perencanaan, pengumpulan data, hingga penyelesaian akhir, setiap tahap memiliki prosedur standar untuk memastikan kualitas hasil yang konsisten dan sesuai dengan kebutuhan klien.</p>
+        <h3>Contoh Proyek Terintegrasi</h3>
+        <img class="media-wide" src="assets/urutan-proyek.png" alt="Urutan Proyek" />
+        <img class="media-wide" src="assets/contoh2.png" alt="Contoh proyek terintegrasi" />
+        <div style="max-width:80ch;font-size:16px;color:var(--svc-muted);line-height:1.5;margin-top:24px">
+          <p><strong>Deskripsi:</strong> Kami dapat menggabungkan berbagai layanan seperti Perspektif CG, video panduan, dan simulasi VR untuk proyek kompleks seperti subdivisi atau renovasi multi-bangunan.</p>
+          <p><strong>Keunggulan:</strong> Pendekatan terintegrasi ini memastikan konsistensi visual dan efisiensi dalam penyampaian materi promosi.</p>
+          <p><strong>Hasil:</strong> Solusi komprehensif yang memberikan pengalaman visual menyeluruh untuk klien.</p>
+          <p><strong>Rincian produksi:</strong> Kombinasi layanan sesuai kebutuhan proyek</p>
+          <p><strong>Formulir pengiriman:</strong> Format campuran (file + URL sesuai layanan)</p>
+          <p><strong>Bahan yang dibutuhkan:</strong> Denah, elevasi, tata letak, jadwal penyelesaian, dan spesifikasi proyek terintegrasi</p>
+          <p><strong>Tenggat waktu:</strong> Bervariasi tergantung kompleksitas proyek (konsultasi untuk estimasi)</p>
+          <p><strong>Deskripsi:</strong> Penjelasan tahapan sistematis dalam pelaksanaan proyek visualisasi arsitektur</p>
+          <p><strong>Keunggulan:</strong> Prosedur standar untuk memastikan kualitas hasil yang konsisten</p>
+          <p><strong>Hasil:</strong> Penyelesaian proyek tepat waktu dengan hasil sesuai ekspektasi klien</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Penataan Rumah -->
+  <div id="modal-penataan-rumah" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-penataan-rumah')" aria-label="Tutup modal">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>Penataan Rumah</center>
+      </h2>
+      <style>
+        #modal-penataan-rumah .media-wide{
+          display:block;
+          width:50%;
+          height:auto;
+          max-width:520px;
+          margin:0 auto 16px;
+          object-fit:cover;
+        }
+        #modal-penataan-rumah .media-wide:last-child{ margin-bottom:0; }
+      </style>
+      <div style="font-size:16px;color:var(--svc-text);line-height:1.4;white-space:normal;margin:0 auto;max-width:70ch;padding:8px">
+        <p>Layanan home staging CG membantu Anda memvisualisasikan penataan interior dan eksterior yang menarik dan fungsional. Kami menyediakan solusi desain interior yang modern dan sesuai dengan tren terkini untuk meningkatkan daya tarik properti Anda.</p>
+        <h3>Contoh Interior</h3>
+        <div class="media-row">
+          <img class="media-wide" src="assets/interior-sebelum.png" alt="Interior sebelum" />
+          <img class="media-wide" src="assets/interior-sesudah.png" alt="Interior sesudah" />
+        </div>
+        <p style="margin-top:16px">Layanan kami mencakup konsultasi desain eksterior, pemilihan material bangunan, penataan landscape, dan pencahayaan untuk menciptakan suasana yang nyaman dan estetis sesuai dengan karakter properti Anda.</p>
+        <h3>Contoh Eksterior</h3>
+        <div class="media-row">
+          <img class="media-wide" src="assets/eksterior-sebelum.png" alt="Eksterior sebelum" />
+          <img class="media-wide" src="assets/eksterior-sesudah.png" alt="Eksterior sesudah" />
+        </div>
+        <div style="max-width:80ch;font-size:16px;color:var(--svc-muted);line-height:1.5;margin-top:24px">
+          <p><strong>Rincian produksi:</strong> Pengiriman JPG. Jika ada slider, dikirim sebagai URL.</p>
+          <p><strong>Bahan yang dibutuhkan:</strong> Foto ruangan, referensi gaya, dan denah/letak furnitur (boleh sketsa tangan).</p>
+          <p><strong>Tenggat waktu:</strong> ±5 hari kerja (permintaan awal ±10 hari).</p>
+          <p><strong>Catatan:</strong> Furnitur ditentukan pihak kami; koreksi kecil bisa. Jika slider via URL, biaya server 30.000 yen/bulan (hingga 100GB).</p>
+          <p><strong>Deskripsi:</strong> Visualisasi penataan interior dan eksterior yang menarik dan fungsional</p>
+          <p><strong>Keunggulan:</strong> Solusi desain interior modern sesuai tren terkini</p>
+          <p><strong>Hasil:</strong> Peningkatan daya tarik properti dengan suasana nyaman dan estetis</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal Aliran Produksi -->
+   <div id="modal-aliran-produksi" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-aliran-produksi')" aria-label="Tutup modal">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>Aliran Produksi</center>
+      </h2>
+      <style>
+        #modal-aliran-produksi .media-wide{
+          display:block;
+          width:50%;
+          height:auto;
+          max-width:520px;
+          margin:0 auto 16px;
+          object-fit:cover;
+        }
+        #modal-aliran-produksi .media-wide:last-child{ margin-bottom:0; }
+        #modal-aliran-produksi .media-row{
+          display:flex;
+          gap:clamp(10px,1.2vw,16px);
+          width:100%;
+          margin:16px 0;
+          align-items:flex-start;
+        }
+        #modal-aliran-produksi .media-row>*{flex:1; min-width:0}
+        #modal-aliran-produksi .step-content{
+          flex:1;
+          min-width:280px;
+          font-size:16px;
+          color:var(--svc-text);
+          line-height:1.4;
+        }
+        #modal-aliran-produksi .step-content p{
+          margin:12px 0;
+        }
+        #modal-aliran-produksi .step-icon{
+          text-align:center;
+          margin:16px 0;
+        }
+        #modal-aliran-produksi .step-icon svg{
+          display:inline-block;
+        }
+        #modal-aliran-produksi .arrow-down{
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          margin:20px 0;
+        }
+        #modal-aliran-produksi .arrow-down svg{
+          width:40px;
+          height:40px;
+          color:var(--svc-brand);
+        }
+      </style>
+      <div style="font-size:16px;color:var(--svc-text);line-height:1.4;white-space:normal;margin:0 auto;max-width:70ch;padding:8px">
+        <p>Berikut adalah alur produksi sistematis untuk memastikan kualitas hasil yang konsisten dan sesuai dengan kebutuhan klien. Setiap tahap memiliki prosedur standar untuk menjamin efisiensi dan kepuasan pelanggan.</p>
+
+        <div class="media-row">
+          <div class="step-content">
+            <div style="display:flex; align-items:flex-start; margin-bottom:20px;">
+              <div style="flex:1; margin-right:16px;">
+                <p><strong>1. Konsultasi & Perencanaan</strong><br>Kami melakukan konsultasi mendalam untuk memahami kebutuhan dan visi proyek Anda, kemudian membuat perencanaan detail yang mencakup timeline, spesifikasi teknis, dan estimasi biaya.</p>
+              </div>
+              <div style="flex:0 0 auto; width:200px;">
+                <img class="media-wide" src="assets/aliran1.png" alt="Konsultasi & Perencanaan" style="width:100%; height:auto; margin:0;" />
+              </div>
+            </div>
+
+            <div class="arrow-down">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22L7 17H17L12 22Z" fill="currentColor"/>
+                <path d="M12 2V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div style="display:flex; align-items:flex-start; margin-bottom:20px;">
+              <div style="flex:1; margin-right:16px;">
+                <p><strong>2. Pengumpulan Data & Referensi</strong><br>Tim kami mengumpulkan semua data yang diperlukan termasuk denah, foto lokasi, referensi desain, dan spesifikasi material untuk memastikan akurasi visualisasi.</p>
+              </div>
+              <div style="flex:0 0 auto; width:200px;">
+                <img class="media-wide" src="assets/aliran2.png" alt="Pengumpulan Data & Referensi" style="width:100%; height:auto; margin:0;" />
+              </div>
+            </div>
+
+            <div class="arrow-down">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22L7 17H17L12 22Z" fill="currentColor"/>
+                <path d="M12 2V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div style="display:flex; align-items:flex-start; margin-bottom:20px;">
+              <div style="flex:1; margin-right:16px;">
+                <p><strong>3. Desain & Modeling 3D</strong><br>Proses pembuatan model 3D detail dengan texturing dan pencahayaan yang realistis sesuai dengan spesifikasi yang telah disepakati.</p>
+              </div>
+              <div style="flex:0 0 auto; width:200px;">
+                <img class="media-wide" src="assets/aliran3.png" alt="Desain & Modeling 3D" style="width:100%; height:auto; margin:0;" />
+              </div>
+            </div>
+
+            <div class="arrow-down">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22L7 17H17L12 22Z" fill="currentColor"/>
+                <path d="M12 2V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div style="display:flex; align-items:flex-start; margin-bottom:20px;">
+              <div style="flex:1; margin-right:16px;">
+                <p><strong>4. Review & Revisi</strong><br>Kami menyajikan hasil preview untuk feedback dan melakukan revisi yang diperlukan untuk memastikan hasil sesuai dengan ekspektasi klien.</p>
+              </div>
+            </div>
+
+            <div class="arrow-down">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22L7 17H17L12 22Z" fill="currentColor"/>
+                <path d="M12 2V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div style="display:flex; align-items:flex-start;">
+              <div style="flex:1; margin-right:16px;">
+                <p><strong>5. Finalisasi & Pengiriman</strong><br>Proses akhir meliputi rendering final, quality control, dan pengiriman hasil dalam format yang telah disepakati dengan dokumentasi lengkap.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="max-width:80ch;font-size:16px;color:var(--svc-muted);line-height:1.5;margin-top:24px">
+          <p><strong>Deskripsi:</strong> Proses produksi sistematis untuk memastikan kualitas hasil yang konsisten dan sesuai kebutuhan klien</p>
+          <p><strong>Keunggulan:</strong> Pendekatan terstruktur dengan prosedur standar untuk efisiensi dan kepuasan pelanggan</p>
+          <p><strong>Hasil:</strong> Solusi komprehensif dengan dokumentasi lengkap dan kontrol kualitas menyeluruh</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Tanya Jawab Umum -->
+ 
+  <div id="modal-tanya-jawab-umum" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-tanya-jawab-umum')">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>Tanya Jawab Umum</center>
+      </h2>
+      <div style="font-size:16px;color:var(--svc-text);line-height:1.4;white-space:normal;margin:0 auto;max-width:70ch;padding:8px">
+        <p><strong>Mengenai Permintaan</strong></p>
+
+        <p><strong>T.</strong> Di mana saya bisa mengajukan permintaan?<br>
+           <strong>J.</strong> Lakukan "Pencarian Properti" di sistem online JHS dan pilih produk untuk tiap properti.</p>
+
+        <p><strong>T.</strong> Apakah hanya untuk properti yang diajukan ke JHS?<br>
+           <strong>J.</strong> Pada prinsipnya ya.</p>
+
+        <p><strong>T.</strong> Gambar apa saja yang dibutuhkan?<br>
+           <strong>J.</strong> (1) Denah, (2) Elevasi, (3) Tata letak, (4) Daftar finishing, (5) Alamat (Google Maps), (6) Material opsional (gambar/data 3D).</p>
+
+        <p><strong>T.</strong> Apakah foto lokasi diperlukan?<br>
+           <strong>J.</strong> Tidak wajib, tapi foto terbaru membantu akurasi latar belakang.</p>
+
+        <p><strong>T.</strong> Apa yang terjadi jika saya mengajukan permintaan untuk pertama kalinya?<br>
+           <strong>J.</strong> Setelah kami menerima permintaan Anda melalui sistem daring JHS, staf produksi dari Marumori Company akan menghubungi Anda melalui telepon atau email untuk menjelaskan dokumen yang diperlukan dan proses produksi.</p>
+
+        <p><strong>T.</strong> Apa yang terjadi setelah saya melakukan pemesanan?<br>
+           <strong>J.</strong> Kami menggunakan layanan obrolan bisnis "Chatwork" (<a href="https://go.chatwork.com/ja/" target="_blank">https://go.chatwork.com/ja/</a>) untuk berkomunikasi, bertukar dokumen dan data, serta melanjutkan produksi.</p>
+
+        <p><strong>T.</strong> Bisakah saya memeriksa progresnya?<br>
+           <strong>J.</strong> Kami akan mengirimkan pemeriksaan sementara (sudut dan bentuk) serta pemeriksaan akhir. Setelah Anda mengonfirmasi, kami melanjutkan ke tahap penyelesaian dan pencetakan akhir.</p>
+
+        <p><strong>T.</strong> Berapa lama waktu pengiriman?<br>
+           <strong>J.</strong> Setelah semua material terkumpul:
+           <ul style="margin:6px 0;padding-left:18px">
+             <li>Perspektif CG: ±5 hari kerja</li>
+             <li>Video panduan: ±15 hari kerja</li>
+             <li>Simulasi VR: ±10 hari kerja</li>
+             <li>VR walk-in: ±25 hari kerja</li>
+             <li>Home staging: ±5 hari kerja</li>
+           </ul>
+           Untuk permintaan awal, proses dapat memakan waktu ±10 hari kerja tambahan karena tahap diskusi dan persiapan.</p>
+
+        <p><strong>T.</strong> Kapan biaya pembatalan berlaku?<br>
+           <strong>J.</strong> Jika pembatalan setelah produksi dimulai:
+           <ul style="margin:6px 0;padding-left:18px">
+             <li>Sebelum pemeriksaan sementara: 25% dari biaya produksi</li>
+             <li>Setelah pemeriksaan sementara: 50%</li>
+             <li>Setelah koreksi dari pemeriksaan sementara: 75%</li>
+             <li>Setelah cek akhir: 100%</li>
+           </ul>
+           Pembatalan khusus akan dibahas bersama operator dan pihak Marumori.</p>
+
+        <p><strong>T.</strong> Bisakah saya melakukan koreksi di tengah proses?<br>
+           <strong>J.</strong> Bisa, koreksi dilakukan saat pemeriksaan sementara sebelum tahap produksi akhir.</p>
+
+        <p><strong>T.</strong> Bagaimana pengirimannya?<br>
+           <strong>J.</strong> 
+           <ul style="margin:6px 0;padding-left:18px">
+             <li>CG: file .jpg via Chatwork atau email</li>
+             <li>Video: file .mp4 melalui layanan transfer data</li>
+             <li>VR & Walk-in VR: link URL</li>
+           </ul>
+        </p>
+
+        <p><strong>T.</strong> Bagaimana dengan pemeriksaan pengiriman?<br>
+           <strong>J.</strong> Setelah dicek dan disetujui, nota pengiriman dikirim lewat sistem tanda tangan elektronik "CloudSign". Anda cukup klik "Terima" tanpa perlu faks atau dokumen fisik.</p>
+
+        <p><strong>T.</strong> Bisakah Anda membuat kode QR?<br>
+           <strong>J.</strong> Bisa, kami akan menyertakan QR pada pengiriman VR atau video jika diperlukan.</p>
+
+        <p><strong>T.</strong> Bisakah saya membuat kode QR sendiri?<br>
+           <strong>J.</strong> Bisa, siapa pun dapat membuatnya. Silakan tanyakan saat produksi.</p>
+
+        <p><strong>T.</strong> Ada hal yang perlu diperhatikan terkait transaksi?<br>
+           <strong>J.</strong> Silakan merujuk ke "Peraturan Layanan untuk Produksi Konten Gambar Digital CG".</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Video Panduan -->
+  <div id="modal-video-panduan" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-video-panduan')" aria-label="Tutup modal">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>Video Panduan</center>
+      </h2>
+      <style>
+        #modal-video-panduan .media-wide{
+          display:block;
+          width:50%;
+          height:auto;
+          max-width:520px;
+          margin:0 auto 16px;
+          object-fit:cover;
+        }
+        #modal-video-panduan .media-wide:last-child{ margin-bottom:0; }
+      </style>
+      <video class="media-wide" controls>
+        <source src="assets/movie.mp4" type="video/mp4" />
+        Browser Anda tidak mendukung pemutar video.
+      </video>
+      <div style="font-size:16px;color:var(--svc-text);line-height:1.4;white-space:normal;margin:0 auto;max-width:70ch;padding:8px">
+        <p>Layanan video panduan memberikan pengalaman tur virtual yang menarik dan informatif untuk membantu calon pembeli memahami properti secara menyeluruh. Video berkualitas tinggi ini sangat efektif untuk promosi di platform digital seperti YouTube dan media sosial.</p>
+        <h3>Contoh Produksi Video</h3>
+        <img class="media-wide" src="assets/contoh3.png" alt="Contoh video panduan" />
+        <div style="max-width:80ch;font-size:16px;color:var(--svc-muted);line-height:1.5;margin-top:24px">
+          <p><strong>Rincian produksi:</strong> Video tur panduan dengan durasi optimal untuk media sosial, resolusi Full HD</p>
+          <p><strong>Formulir pengiriman:</strong> file .mp4</p>
+          <p><strong>Bahan yang dibutuhkan:</strong> Denah lantai, foto interior/eksterior, skrip panduan, dan referensi gaya video</p>
+          <p><strong>Tenggat waktu:</strong> Dalam 15 hari kerja (tidak termasuk periode konfirmasi pemeriksaan produksi). <em>*Permintaan awal ±20 hari kerja.</em></p>
+          <p><strong>Deskripsi:</strong> Produksi video tur virtual yang menarik dan informatif untuk promosi properti</p>
+          <p><strong>Keunggulan:</strong> Pengalaman visual yang mendalam untuk membantu calon pembeli memahami properti</p>
+          <p><strong>Hasil:</strong> Konten video berkualitas tinggi yang efektif untuk pemasaran digital</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Simulasi VR -->
+  <div id="modal-simulasi-vr" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-simulasi-vr')" aria-label="Tutup modal">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>Simulasi VR</center>
+      </h2>
+      <style>
+        #modal-simulasi-vr .media-wide{
+          display:block;
+          width:50%;
+          height:auto;
+          max-width:520px;
+          margin:0 auto 16px;
+          object-fit:cover;
+        }
+        #modal-simulasi-vr .media-wide:last-child{ margin-bottom:0; }
+      </style>
+      <div style="font-size:16px;color:var(--svc-text);line-height:1.4;white-space:normal;margin:0 auto;max-width:70ch;padding:8px">
+        <p>Layanan simulasi VR menggabungkan foto 360° lokasi dengan CG eksterior yang telah selesai, memungkinkan pengguna untuk beralih antara tampilan sebelum dan sesudah renovasi. Teknologi ini memberikan gambaran yang jelas tentang lingkungan sekitar dan eksterior properti, membantu calon pembeli memvisualisasikan hasil akhir dengan lebih realistis.</p>
+        <h3>Tampilan Simulasi VR</h3>
+        <img class="media-wide" src="assets/simulasi-vr.png" alt="Contoh simulasi VR" />
+        <p style="margin-top:16px">Simulasi VR memberikan pengalaman imersif yang memungkinkan calon pembeli untuk melihat perbandingan langsung antara kondisi sebelum dan sesudah renovasi, membantu dalam pengambilan keputusan pembelian yang lebih tepat.</p>
+        <div style="max-width:80ch;font-size:16px;color:var(--svc-muted);line-height:1.5;margin-top:24px">
+          <p><strong>Rincian produksi:</strong> Eksterior sebelum/sesudah VR (hingga 2 sudut) + URL & kode QR</p>
+          <p><strong>Formulir pengiriman:</strong> URL</p>
+          <p><strong>Bahan yang dibutuhkan:</strong> Denah, elevasi, layout, pembagian, jadwal; foto 360° (kamera sferis)</p>
+          <p><strong>Tenggat waktu:</strong> ±10 hari kerja (permintaan awal ±15 hari)</p>
+          <p><strong>Catatan:</strong> Untuk multi-bangunan, ada biaya tambahan untuk "1. Perspektif CG" tiap bangunan. Biaya server 30.000 yen/bulan (batas 100GB)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Peraturan Pelayanan -->
+  <div id="modal-peraturan-pelayanan" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-peraturan-pelayanan')">×</button>
+      <h2 class="head" style="font-weight: 800; font-size: 24px; color: var(--svc-brand); margin-bottom: 16px;">
+        <center>Peraturan Pelayanan</center>
+      </h2>
+
+      <div class="tos" style="
+        font-size:16px;color:var(--svc-text);
+        line-height:1.22;max-width:68ch;margin:0 auto;
+        padding:4px 0;max-height:80vh;overflow:auto;">
+
+        <style>
+          /* Spasi rapat & konsisten di dalam modal ini saja */
+          #modal-peraturan-pelayanan .tos p{margin:6px 0;}
+          #modal-peraturan-pelayanan .tos h3{margin:10px 0 6px;font-size:16px}
+          #modal-peraturan-pelayanan .tos ol{margin:4px 0 6px 18px;padding:0}
+          #modal-peraturan-pelayanan .tos ul{margin:4px 0 6px 18px;padding:0}
+          #modal-peraturan-pelayanan .tos li{margin:2px 0}
+          #modal-peraturan-pelayanan .tos small{color:var(--svc-muted, #64748b)}
+        </style>
+
+        <p><strong>Peraturan layanan untuk produksi konten gambar digital CG</strong></p>
+        <p>Peraturan layanan ini mengatur "Japan Home Shield CG Perspective, Walk-Through Video, Simulation VR, Walk-In VR, VR Town, Home Staging, dan layanan produksi konten gambar digital lainnya" (selanjutnya disebut “Layanan”) yang disediakan oleh Marumori Company, Inc. (selanjutnya disebut “Marumori Company”), dan penjualan keagenan Layanan ini yang dilakukan oleh Japan Home Shield Co., Ltd. (selanjutnya disebut “JHS”, termasuk pemegang waralaba JHS). Bisnis yang terdaftar di JHS (selanjutnya disebut “Bisnis”) diminta untuk membaca peraturan ini dengan saksama dan memahami isinya sebelum mengajukan permohonan Layanan ini.</p>
+        <p>Pelanggan yang menggunakan Layanan ini dianggap telah menyetujui seluruh isi peraturan ini.</p>
+
+        <h3>Pasal 1 (Ketentuan Umum)</h3>
+        <ol>
+          <li>Peraturan ini menetapkan hal-hal dasar terkait alih daya layanan ini, dan berlaku untuk kontrak individual untuk layanan ini yang diajukan oleh pelaku usaha melalui JHS dan disepakati antara pelaku usaha dan Marumori Company pada setiap kesempatan.</li>
+          <li>Jika suatu kontrak individual mengecualikan penerapan sebagian dari peraturan ini atau menetapkan hal yang berbeda, ketentuan dalam kontrak individual tersebut yang berlaku.</li>
+          <li>Hal-hal yang tidak diatur dalam peraturan ini maupun kontrak individual mengikuti “Peraturan Layanan” (selanjutnya “Peraturan Asli”) pada panduan pendaftaran sistem perusahaan kami dan penerima waralaba.</li>
+        </ol>
+
+        <h3>Pasal 2 (Konten Layanan)</h3>
+        <p>Hasil dan format pengiriman yang disediakan oleh layanan ini adalah:</p>
+        <ol>
+          <li>Perspektif CG (file .jpg)</li>
+          <li>Video panduan (termasuk video pendek) (file .mp4)</li>
+          <li>Simulasi VR (URL)</li>
+          <li>VR Walk-in (kelas atas) (URL)</li>
+          <li>VR Walk-in (kelas master) (URL)</li>
+          <li>VR Town (URL)</li>
+          <li>Home staging (file .jpg; jika ada slider, via URL)</li>
+          <li>Pesanan proyek (kombinasi ①–⑥; format sesuai hasil)</li>
+          <li>Fotografi 360° on-site untuk VR (URL, digabung dengan hasil VR)</li>
+          <li>Biaya pemeliharaan server konten VR (URL disediakan)</li>
+        </ol>
+
+        <h3>Pasal 3 (Agen Penjualan JHS)</h3>
+        <ol>
+          <li>Layanan dipesan melalui situs JHS Online dan hanya untuk bisnis terdaftar JHS.</li>
+          <li>JHS menerima aplikasi, menyiapkan kutipan penambahan/perubahan, dan menagih biaya atas nama Marumori Company.</li>
+          <li>Marumori Company bertanggung jawab penuh atas penyediaan Layanan (pengiriman, pembayaran kerusakan, dll.), dan JHS tidak bertanggung jawab apa pun.</li>
+          <li>Terlepas dari butir sebelumnya, JHS dapat mengganti rugi kerusakan biasa aktual yang disebabkan karena kesalahan JHS terkait penjualan Layanan ini, dengan batas maksimal sebesar biaya layanan, kecuali kesengajaan/kelalaian berat.</li>
+        </ol>
+
+        <h3>Pasal 4 (Perubahan/Penghentian)</h3>
+        <p>JHS dapat mengubah konten, tanggal pengiriman, biaya, menangguhkan, atau membatalkan penjualan Layanan demi kenyamanan Marumori Company atau JHS.</p>
+
+        <h3>Pasal 5 (Permintaan & Progres Produksi)</h3>
+        <ol>
+          <li>Permintaan produksi CG via JHS Online menjadi pesanan produksi (kontrak individual) ke Marumori Company. Jika tidak bisa via JHS Online, JHS memberi instruksi pemesanan melalui formulir terpisah.</li>
+          <li>Dalam 2 hari kerja setelah permintaan, Marumori Company menghubungi penanggung jawab (email/telepon) untuk menjelaskan proses produksi.</li>
+          <li>Progres dilakukan lewat Chatwork; satu utas per bisnis agar Marumori Company, bisnis, dan JHS dapat berbagi progres.</li>
+        </ol>
+
+        <h3>Pasal 6 (Gambar yang Diperlukan)</h3>
+        <ol>
+          <li>Perusahaan menyediakan: ① Denah, ② Elevasi, ③ Tata letak, ④ Jadwal penyelesaian (nomor model bahan), ⑤ Alamat (Google Maps), ⑥ Materi opsional (foto eksterior/material, data 3D, dll.).</li>
+          <li>Perubahan gambar dapat dilakukan hingga hari kerja berikut pemesanan; setelahnya hubungi Marumori Company.</li>
+          <li>Ide/permintaan khusus: sediakan materi pendukung.</li>
+          <li>Marumori Company dan JHS tidak menggunakan/menyebarkan materi di luar tujuan layanan ini.</li>
+        </ol>
+
+        <h3>Pasal 7 (Penyerahan Hasil Kerja)</h3>
+        <ol>
+          <li>Metode pengiriman:
+            <ul>
+              <li><em>Chatwork/email</em> — data kecil: CG still & home staging (tanpa slider)</li>
+              <li><em>Layanan transfer data besar</em> — video panduan (.mp4)</li>
+              <li><em>URL</em> — simulasi VR, VR walk-in, VR town, home staging (dengan slider), dan sebagian CG</li>
+            </ul>
+            <small>*Detail hasil via URL lihat Pasal Layanan Berlangganan.</small>
+          </li>
+          <li>Kontraktor memeriksa kesesuaian hasil dan segera memberi tahu Marumori Company jika ada masalah.</li>
+        </ol>
+
+        <h3>Pasal 8 (Layanan Berlangganan)</h3>
+        <ol>
+          <li><strong>Konten Target:</strong> Hasil VR & semua yang dikirim via URL. File tunggal .jpg/.png/.mp4 tidak termasuk.</li>
+          <li><strong>Spesifikasi:</strong> Satu domain per bisnis, dioperasikan di server VR.</li>
+          <li><strong>Biaya Bulanan:</strong> Dikenakan mulai bulan setelah hasil VR dikirim.</li>
+          <li><strong>Berakhirnya Biaya:</strong> Berlaku sampai bulan saat konten VR dihapus dari sistem.</li>
+          <li><strong>Konten Dihapus:</strong> Tidak dapat digunakan kembali setelah inisialisasi/penghapusan.</li>
+          <li><strong>Hak Cipta:</strong> Milik Marumori Company. Hasil VR tidak boleh diberikan/dibagikan ke perusahaan lain.</li>
+          <li><strong>Penagihan:</strong> Tanggal 1 tiap bulan; tidak pro rata.</li>
+          <li><strong>Jumlah:</strong> ¥30.000/bulan (before tax) hingga 100 GB; lebihnya +¥10.000 per 100 GB.</li>
+          <li><strong>Penafian:</strong> Layanan bisa terganggu karena force majeure/insiden teknis/maintenance; Marumori Company & JHS tidak bertanggung jawab atas kerusakan.</li>
+          <li><strong>Perubahan/Pembatalan:</strong> Dapat diubah/dibatalkan tanpa pemberitahuan; konten layanan dapat berubah tanpa pemberitahuan.</li>
+        </ol>
+
+        <h3>Pasal 9 (Nota & Tanda Terima)</h3>
+        <ol>
+          <li>Setelah pengiriman, nota via CloudSign dikirim ke operator bisnis.</li>
+          <li>Pengiriman dianggap selesai saat operator mengonfirmasi penerimaan secara elektronik (harap konfirmasi ≤ 3 hari kerja).</li>
+        </ol>
+
+        <h3>Pasal 10 (Pembatalan)</h3>
+        <ul>
+          <li>Sebelum pemeriksaan sementara (sudut/bentuk): 25% biaya produksi</li>
+          <li>Setelah pemeriksaan sementara: 50%</li>
+          <li>Koreksi setelah pemeriksaan sementara (setelah kirim koreksi): 75%</li>
+          <li>Setelah cek akhir: 100%</li>
+        </ul>
+        <p>Pembatalan karena permintaan khusus ditentukan melalui konsultasi operator & Marumori Company.</p>
+
+        <h3>Pasal 11 (Modifikasi Besar Setelah Pemeriksaan Ulang)</h3>
+        <p>Modifikasi/perubahan besar setelah pemeriksaan ulang memerlukan estimasi baru. Jika berujung pembatalan, biaya pembatalan Pasal sebelumnya berlaku.</p>
+
+        <h3>Pasal 12 (Hak Cipta)</h3>
+        <p>Hak cipta & seluruh hak kekayaan intelektual atas semua hasil kerja (termasuk yang belum selesai) menjadi milik Marumori Company. Penggunaan di luar promosi/penjualan/penawaran produk sendiri tanpa izin tertulis dilarang.</p>
+
+        <h3>Pasal 13 (Larangan)</h3>
+        <ol>
+          <li>Menyalin/memproses/menjual/mendistribusikan/mengalihkan/meminjamkan/ penggunaan sekunder hasil kerja dilarang.</li>
+          <li>Hasil kerja tidak boleh digunakan/ didaftarkan sebagai merek/nama dagang. Pemesan boleh memakai di situs web sebagai bagian konten (komersial/non-komersial).</li>
+          <li>Dilarang penggunaan yang melanggar ketertiban umum & kesusilaan.</li>
+        </ol>
+
+        <h3>Pasal 14 (Penafian)</h3>
+        <ol>
+          <li>Marumori Company dan JHS tidak bertanggung jawab atas kerusakan/kerugian akibat penggunaan hasil kerja.</li>
+          <li>Berlaku pula atas masalah/kerugian akibat penggunaan situs ini.</li>
+        </ol>
+
+        <h3>Pasal 15 (Penggunaan Komersial Barang yang Diserahkan)</h3>
+        <p>Pelaku usaha memberi izin kepada Marumori Company & JHS untuk menggunakan barang yang diserahkan sebagai contoh produksi sepanjang tidak mengungkap data pribadi.</p>
+
+        <h3>Pasal 16 (Perubahan Ketentuan)</h3>
+        <p>Marumori Company & JHS dapat mengubah peraturan ini kapan saja tanpa pemberitahuan.</p>
+
+        <h3>Pasal 17 (Tanggung Jawab atas Ketidaksesuaian Kontrak)</h3>
+        <p>Jika hasil tidak sesuai Kontrak Individual, Operator dapat meminta perbaikan/penggantian/pembatalan. Tidak berlaku bila disebabkan instruksi Operator, tidak diberitahukan saat pengiriman, atau tidak diberitahukan dalam 1 bulan sejak diketahui.</p>
+
+        <h3>Pasal 18 (Pembayaran)</h3>
+        <p>Cara & waktu pembayaran diatur dalam Perjanjian Perseorangan.</p>
+
+        <h3>Pasal 19 (Informasi Pribadi)</h3>
+        <p>Diatur oleh “Kebijakan Perlindungan Informasi Pribadi” yang dipublikasikan di situs ini.</p>
+
+        <h3>Pasal 20 (Yurisdiksi)</h3>
+        <p>Jika terjadi sengketa hukum, Pengadilan Distrik Tokyo menjadi pengadilan tingkat pertama yang eksklusif.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Tahun footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle (perbaikan: guard null agar tidak error JS)
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const open = menu.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    }
+
+    // Reveal on scroll for contact form
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { threshold:.2 });
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // ====== Aktifkan tombol kirim hanya jika kolom pesan terisi ======
+    const form = document.getElementById('contactForm');
+    const ok = document.getElementById('formStatus');
+    const err = document.getElementById('formError');
+    const messageField = document.getElementById('message');
+    const submitBtn    = document.getElementById('submitBtn');
+
+    function updateSubmitState(){
+      const hasMessage = messageField && messageField.value.trim().length > 0;
+      if (submitBtn){
+        submitBtn.disabled = !hasMessage;
+        submitBtn.setAttribute('aria-disabled', String(!hasMessage));
+      }
+    }
+    if (messageField){
+      messageField.addEventListener('input', updateSubmitState);
+      messageField.addEventListener('change', updateSubmitState);
+      updateSubmitState(); // set awal
+    }
+
+    // ======================== Web3Forms AJAX ========================
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Jika kolom pesan kosong (tombol nonaktif), jangan kirim
+        if (submitBtn && submitBtn.disabled) return;
+
+        if (ok) ok.style.display = 'none';
+        if (err) err.style.display = 'none';
+        try {
+          const formData = new FormData(form);
+          const resp = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          const data = await resp.json().catch(() => ({}));
+          if (resp.ok && (data.success === true || data.message)) {
+            if (ok) ok.style.display = 'block';
+            form.reset();
+            updateSubmitState(); // setelah reset, matikan lagi tombol
+          } else {
+            if (err) err.style.display = 'block';
+          }
+        } catch (e) {
+          if (err) err.style.display = 'block';
+        }
+      });
+    }
+
+    // ======================== Modal Functions ========================
+    function showModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return false;
+      modal.setAttribute('aria-hidden','false');
+      // close when clicking backdrop
+      const onBackdrop = (e) => { if(e.target === modal) { closeModal(id); modal.removeEventListener('click', onBackdrop); } };
+      modal.addEventListener('click', onBackdrop);
+      document.body.style.overflow = 'hidden';
+      return false;
+    }
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+  </script>
+</body>
+</html>

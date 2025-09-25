@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet Our Team — PT Rupa Raya Indonesia</title>
+  <meta name="description" content="Tim PT Rupa Raya Indonesia: crew kreatif CG, 3D modeling, VR/AR, dan animasi." />
+  <meta name="theme-color" content="#0b0f1a" />
+
+  <style>
+     :root{
+      --bg:#ffffff;
+      --panel:#f8fafc;
+      --muted:#64748b;
+      --text:#1e293b;
+      --ring:rgba(34,211,238,.35);
+      --border:rgba(148,163,184,.2);
+      --accent-shadow:0 10px 30px rgba(139,92,246,.2);
+      --radius:16px;
+      --radius-lg:24px;
+      --maxw:1200px;
+    }
+    *,::before,::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color:var(--text); background:radial-gradient(circle at 20% -10%, rgba(34,211,238,.08), transparent 30%),
+                         radial-gradient(circle at 80% 0%, rgba(139,92,246,.08), transparent 30%),
+                         var(--bg);
+      line-height:1.6; letter-spacing:.2px; padding-top:var(--nav-h);
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--maxw); margin-inline:auto; padding-inline:20px}
+
+    /* ========================
+       Navigation
+       ======================== */
+    .nav{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(4px);
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92));
+      border-bottom:1px solid var(--border);
+    }
+    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.5px }
+
+    .menu{ display:flex; align-items:center; gap:20px }
+    .menu a{ opacity:.9; font-weight:500 }
+    .menu a:hover{ opacity:1 }
+    .menu-toggle{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px }
+    @media (max-width:900px){
+      .menu{ display:none }
+      .menu.is-open{ display:flex; position:absolute; right:16px; top:60px; flex-direction:column; gap:12px; background:var(--panel); padding:14px; border:1px solid var(--border); border-radius:14px }
+      .menu-toggle{ display:inline-flex }
+      .about-extra{margin-top:30px; display:flex; gap:20px; align-items:center;}
+      .about-extra img{width:160px; height:160px; border-radius:20px; object-fit:cover; border:2px solid var(--border);}
+    }
+
+  
+    .nav{
+      position:fixed; top:0; left:0; right:0; height:var(--nav-h);
+      z-index:200; 
+      backdrop-filter:saturate(1.2) blur(4px);
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92));
+      border-bottom:1px solid var(--border);
+    }
+    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; height:100%; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.5px }
+    
+    .menu{ display:flex; align-items:center; gap:20px }
+    .menu a{ opacity:.9; font-weight:500 } .menu a:hover{ opacity:1 }
+    .menu-toggle{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px }
+    @media (max-width:900px){
+      .menu{ display:none }
+      .menu.is-open{
+        display:flex; position:absolute; right:16px; top:calc(var(--nav-h) + 8px);
+        flex-direction:column; gap:12px; background:var(--panel); padding:14px; border:1px solid var(--border); border-radius:14px
+      }
+      .menu-toggle{ display:inline-flex }
+      .about-extra{margin-top:30px; display:flex; gap:20px; align-items:center;}
+      .about-extra img{width:160px; height:160px; border-radius:20px; object-fit:cover; border:2px solid var(--border);}
+    }
+
+    .menu{
+  display:flex; align-items:center; gap:20px;
+}
+.menu a{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:600;
+  color:#0f172a;
+  text-decoration:none;
+  transition: background-color .2s ease, color .2s ease, transform .12s ease, box-shadow .2s ease;
+}
+.menu a:hover,
+.menu a:focus-visible{
+  background:#9bc6e7;         
+  color:#111827;              
+  transform:translateY(-1px);
+  outline:none;
+}
+
+@media (max-width:900px){
+  .menu.is-open a{
+    width:100%;
+    padding:10px 12px;
+  }
+}
+    /* ======================== HERO ======================== */
+    .top-banner{ width:100vw; margin-left:50%; transform:translateX(-50%); position:relative; background:#ffffff }
+    .top-banner img{ width:100%; height:clamp(220px, 42vw, 520px); object-fit:cover; object-position:center; display:block }
+
+    /* ======================== PAGE TITLE ======================== */
+    .page-head{ padding:14px 0 4px }
+    .page-title{ text-align:left; margin:0; font-weight:800; letter-spacing:.3px; font-size:clamp(18px,2.4vw,24px) }
+
+    /* ======================== DESKRIPSI (justified) ======================== */
+    .team-desc{ padding:8px 0 14px; background:#ffffff; border-top:1px solid rgba(148,163,184,.2); border-bottom:1px solid rgba(148,163,184,.2) }
+    .team-desc .inner{ max-width:var(--maxw); margin:0 auto; text-align:left }
+    .team-desc p{ margin:0; color:#475569; font-size:15.5px; line-height:1.45; text-wrap:balance; max-width:118ch; text-align:justify; text-justify:inter-word; hyphens:auto }
+    @media (max-width: 1024px){ .team-desc p{ max-width: 90ch } }
+    @media (max-width: 768px){ .team-desc p{ max-width: 70ch } }
+
+    /* ======================== GRID (tetap) ======================== */
+    .team{ padding:20px 0 60px }
+    .team-grid { display:grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap:20px }
+    @media (max-width:1100px){ .team-grid{ grid-template-columns: repeat(4, 1fr) } }
+    @media (max-width:900px){ .team-grid{ grid-template-columns: repeat(3, 1fr) } }
+    @media (max-width:640px){ .team-grid{ grid-template-columns: repeat(2, 1fr) } }
+    @media (max-width:420px){ .team-grid{ grid-template-columns: 1fr } }
+
+    .member{ position:relative; overflow:hidden; border-radius:16px; border:1px solid var(--border); background:#fff; box-shadow:0 6px 18px rgba(0,0,0,.07); transition:.3s transform ease, .3s box-shadow ease }
+    .member:hover{ transform:translateY(-6px); box-shadow:0 12px 26px rgba(0,0,0,.12) }
+    .member img{ width:100%; height:280px; object-fit:cover; cursor:zoom-in }
+    .member-info{ padding:12px 14px; text-align:center }
+    .member-info h3{ margin:4px 0 4px; font-size:18px }
+    .member-info p{ margin:0; color:#64748b; font-size:14px }
+
+    /* ======================== TOP BANNER (tetap) ======================== */
+    .top-banner{position:relative; width:100%; background:#000;   margin-top: 50px; }
+    .top-banner img{width:100%; height:clamp(220px, 42vh, 460px); object-fit:cover}
+    .top-banner .caption{position:absolute; inset:auto 16px 16px 16px; color:#fff; font-weight:700; letter-spacing:.06em; text-shadow:0 2px 12px rgba(0,0,0,.45)}
+    .top-banner .caption small{display:block; opacity:.9; font-weight:600}
+
+    /* ======================== LIGHTBOX (NO OVERLAY COLOR) ======================== */
+    .lightbox{ position:fixed; inset:0; background:transparent; /* ← semula rgba(0,0,0,.75) */ display:none; align-items:center; justify-content:center; padding:24px; z-index:1000 }
+    .lightbox.is-open{ display:flex }
+    .lightbox__img{ max-width:min(1200px,92vw); max-height:90vh; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.00) } /* hilangkan bayangan agar tidak ada efek warna */
+    .lightbox__close{ position:fixed; top:14px; right:14px; width:42px; height:42px; border-radius:999px; display:grid; place-items:center; background:rgba(255,255,255,.92); border:1px solid var(--border); cursor:pointer; font-weight:700; box-shadow:0 6px 20px rgba(0,0,0,.12) }
+  </style>
+</head>
+<body>
+  <!-- ===== WhatsApp Bubble ===== -->
+  <a id="waBubble" class="wa-bubble" href="https://wa.me/6288804155370?text=Halo%20Kak%2C%20saya%20mau%20tanya%20Tentang%20PT%20Rupa%20Raya%20Indonesia" target="*_blank" rel="noopener" aria-label="Chat via WhatsApp">
+    <span class="wa-bubble__btn" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none"><path fill="#fff" d="M26.2 5.8A12.2 12.2 0 0 0 4.6 22.7L3 29l6.5-1.7A12.2 12.2 0 1 0 26.2 5.8Zm-5.4 17.6c-2 .0-3.9-.6-5.6-1.7-1.6-1-2.9-2.4-3.9-4.1-1-1.7-1.5-3.5-1.5-5.4 0-.6.1-1.2.3-1.8.2-.6.7-1 1.3-1.1.3-.1.6 0 .9.1l2.1.9c.2.1.4.3.5.5.1.2.1.5 0 .8l-.5 1.6c-.1.3-.1.6 0 .9.5 1.2 1.3 2.2 2.4 3 1 .7 2.1 1.2 3.3 1.4.3.1.6 0 .9-.1l1.6-.6c.2-.1.5-.1.8 0 .2.1.4.3.5.5l.9 2.2c.1.3.2.6.1.9-.1.6-.5 1.1-1.1 1.3-.6.3-1.3.4-2 .4Z"/></svg>
+    </span>
+    <span class="wa-bubble__label"></span>
+  </a>
+
+  <nav class="nav">
+    <div class="container nav-wrap">
+      <div class="brand">
+        <img src="assets/Logo_rri.jpg" alt="PT Rupa Raya Indonesia Logo" style="width:40px; height:55px; border-radius:5px; object-fit:contain;" />
+        <span> PT Rupa Raya Indonesia</span>
+      </div>
+      
+      <button class="menu-toggle" aria-label="Menu" id="menuToggle">☰</button>
+      <div class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="company.html">Company</a>
+        <a href="team.html">Team</a>
+        <a href="servis.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== FULL-BLEED HERO ===== -->
+  <section class="top-banner" aria-label="Banner team">
+    <img src="assets/tim.jpg" alt="Zero Gap Gallery Hero" loading="eager" decoding="async" />
+  </section>
+
+  <!-- ===== PAGE TITLE (ATAS) ===== -->
+  <header class="page-head">
+    <div class="container">
+      <h1 class="page-title">Meet Our Team — PT Rupa Raya Indonesia</h1>
+    </div>
+  </header>
+
+  <!-- ===== DESKRIPSI ===== -->
+  <section class="team-desc" aria-label="Deskripsi halaman Team">
+    <div class="container inner">
+      <p>
+        Halaman Team pada website <strong>PT Rupa Raya Indonesia</strong> dirancang untuk memperkenalkan anggota tim yang berperan penting dalam proses kreatif perusahaan. Melalui halaman ini, pengunjung dapat mengenal lebih dekat para profesional di balik proyek CG, 3D modeling, VR/AR, dan animasi. Tujuan utamanya adalah membangun kepercayaan calon klien dan mitra; dengan menampilkan profil serta jabatan, perusahaan menunjukkan transparansi dan profesionalisme.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== TEAM GRID (dipertahankan) ===== -->
+  <section class="team">
+    <div class="container">
+      <div class="team-grid">
+        <article class="member"><img src="assets/team/Ira Toukyuu.jpg" alt="Ira" /><div class="member-info"><h3>Ira</h3><p>Leader TouKyuu CG</p></div></article>
+        <article class="member"><img src="assets/team/Aco support.jpg" alt="Aco" /><div class="member-info"><h3>Aco</h3><p>Staff Support</p></div></article>
+        <article class="member"><img src="assets/team/Ria subscraption.jpg" alt="Ria" /><div class="member-info"><h3>Ria</h3><p>Leader Subscription</p></div></article>
+        <article class="member"><img src="assets/team/Syahril flex.jpg" alt="Syahril" /><div class="member-info"><h3>Syahril</h3><p>Staff Flex</p></div></article>
+        <article class="member"><img src="assets/team/Idha subscraption.jpg" alt="Idha" /><div class="member-info"><h3>Idha</h3><p>Staff Subscription</p></div></article>
+        <article class="member"><img src="assets/team/Jumaidil sachi.jpg" alt="Jumaidil" /><div class="member-info"><h3>Jumaidil</h3><p>Staff Sachi</p></div></article>
+        <article class="member"><img src="assets/team/Rezha Toukyuu.jpg" alt="Rezha" /><div class="member-info"><h3>Rezha</h3><p>Staff TouKyuu CG</p></div></article>
+        <article class="member"><img src="assets/team/Dian semarang.jpg" alt="Dian" /><div class="member-info"><h3>Dian</h3><p>Staff Semarang</p></div></article>
+        <article class="member"><img src="assets/team/Ian semarang.jpg" alt="Ian" /><div class="member-info"><h3>Ian</h3><p>Staff Semarang</p></div></article>
+        <article class="member"><img src="assets/team/Ghufran subscraption.jpg" alt="Ghufran" /><div class="member-info"><h3>Ghufran</h3><p>Staff Subscription</p></div></article>
+        <article class="member"><img src="assets/team/Ipal spacely VR.jpeg" alt="Ipal" /><div class="member-info"><h3>Ipal</h3><p>Staff Spacely VR</p></div></article>
+        <article class="member"><img src="assets/team/Dilfa sachi.jpg" alt="Dilfa" /><div class="member-info"><h3>Dilfa</h3><p>Staff Sachi</p></div></article>
+        <article class="member"><img src="assets/team/Husna-freelance.jpg" alt="Husna" /><div class="member-info"><h3>Husna</h3><p>Staff Administrasi</p></div></article>
+        <article class="member"><img src="assets/team/Adhy freelance.jpeg" alt="Adhy" /><div class="member-info"><h3>Adhy</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Asa freelance.jpg" alt="Asa" /><div class="member-info"><h3>Asa</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Ale freelance.jpg" alt="Ale" /><div class="member-info"><h3>Ale</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Aul freelance.jpg" alt="Aul" /><div class="member-info"><h3>Aul</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Edo freelance.jpg" alt="Edo" /><div class="member-info"><h3>Edo</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Een freelance.jpg" alt="Een" /><div class="member-info"><h3>Een</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Alif freelance.jpg" alt="Alif" /><div class="member-info"><h3>Alif</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Bayu freelance.jpg" alt="Bayu" /><div class="member-info"><h3>Bayu</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Farel freelance.jpg" alt="Farel" /><div class="member-info"><h3>Farel</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Aliah freelance.jpg" alt="Aliah" /><div class="member-info"><h3>Aliah</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Fauzul freelance.jpg" alt="Fauzul" /><div class="member-info"><h3>Fauzul</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Amelia freelance.jpg" alt="Amelia" /><div class="member-info"><h3>Amelia</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/JB freelance.jpg" alt="JB" /><div class="member-info"><h3>JB</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Feby freelance.jpg" alt="Feby" /><div class="member-info"><h3>Feby</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Adit freelance.jpg" alt="Adit" /><div class="member-info"><h3>Adit</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Vani freelance.jpg" alt="Vani" /><div class="member-info"><h3>Vani</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Unso freelance.jpg" alt="Unso" /><div class="member-info"><h3>Unso</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Yola freelance.jpg" alt="Yola" /><div class="member-info"><h3>Yola</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Gusti freelance.jpeg" alt="Gusti" /><div class="member-info"><h3>Gusti</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Heru freelance.jpeg" alt="Hiro" /><div class="member-info"><h3>Hiro</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Ibam freelance.jpeg" alt="Ibam" /><div class="member-info"><h3>Ibam</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Isna freelance.jpg" alt="Isna" /><div class="member-info"><h3>Isna</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Safrin freelance.jpg" alt="Safrin" /><div class="member-info"><h3>Safrin</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Sute freelance.jpeg" alt="Sute" /><div class="member-info"><h3>Sute</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Mesy freelance.jpg" alt="Mesy" /><div class="member-info"><h3>Mesy</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Ikbal freelance.jpeg" alt="Ikbal" /><div class="member-info"><h3>Ikbal</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Tenri freelance.jpg" alt="Tenri" /><div class="member-info"><h3>Tenri</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Yongki freelance.jpeg" alt="Yongki" /><div class="member-info"><h3>Yongki</h3><p>Freelance</p></div></article>
+        <article class="member"><img src="assets/team/Yusran freelance.jpg" alt="Yusran" /><div class="member-info"><h3>Yusran</h3><p>Freelance</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIGHTBOX DOM ===== -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Preview foto anggota">
+    <button type="button" class="lightbox__close" aria-label="Tutup (Esc)">✕</button>
+    <img id="lightboxImg" class="lightbox__img" alt="Preview team" />
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> PT Rupa Raya Indonesia • Semua hak cipta dilindungi</div>
+      <div class="social">
+        <a class="pill" href="https://www.instagram.com/ruparayaindonesia" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 4.25a5.25 5.25 0 1 1 0 10.5a5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5zm5.88-.88a1.13 1.13 0 1 1 0 2.26a1.13 1.13 0 0 1 0-2.26z"/></svg>
+        </a>
+        <a class="pill" href="https://www.youtube.com/@ruparaya" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 24 24"><path d="M23.498 6.186a2.99 2.99 0 0 0-2.106-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.392.566a2.99 2.99 0 0 0-2.106-2.12C0 8.09 0 12 0 12s0 3.91.502 5.814a2.99 2.99 0 0 0 2.106 2.12C4.495 20.5 12 20.5 12 20.5s7.505 0 9.392-.566a2.99 2.99 0 0 0 2.106-2.12C24 15.91 24 12 24 12s0-3.91-.502-5.814zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Tahun footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    toggle && toggle.addEventListener('click', ()=> menu.classList.toggle('is-open'));
+
+    // WhatsApp smart fallback
+    (function(){
+      var NUMBER  = "6288804155370";
+      var MESSAGE = "Halo Kak, saya mau tanya Tentang PT Rupa Raya Indonesia";
+      var SIDE    = "right";
+      var a = document.getElementById("waBubble");
+      if (!a) return;
+      var raw = (NUMBER||"").replace(/[^\d]/g,"");
+      if (/^0/.test(raw)) raw = raw.replace(/^0/, "62");
+      var enc = encodeURIComponent(MESSAGE||"");
+      var urlWeb  = "https://wa.me/" + raw + "?text=" + enc;
+      var urlAPI  = "https://api.whatsapp.com/send?phone=" + raw + "&text=" + enc;
+      var urlDeep = "whatsapp://send?phone=" + raw + "&text=" + enc;
+      a.href = urlWeb;
+      if (SIDE === "left") { a.style.right = "auto"; a.style.left = "20px"; }
+      a.addEventListener("click", function(e){
+        var isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+        if (isMobile) {
+          e.preventDefault();
+          var t = Date.now();
+          window.location.href = urlDeep;
+          setTimeout(function(){ if (Date.now() - t < 1500) window.location.href = urlAPI; }, 1200);
+          return;
+        }
+        e.preventDefault();
+        window.location.href = "https://web.whatsapp.com/send?phone=" + raw + "&text=" + enc;
+      }, false);
+    })();
+
+    // LIGHTBOX
+    (function(){
+      const lb = document.getElementById('lightbox');
+      const imgTarget = document.getElementById('lightboxImg');
+      const closeBtn = lb.querySelector('.lightbox__close');
+      const imgs = document.querySelectorAll('.member img');
+
+      function open(src, alt){ imgTarget.src = src; imgTarget.alt = alt || 'Preview team'; lb.classList.add('is-open'); lb.setAttribute('aria-hidden','false'); document.addEventListener('keydown', onKey); }
+      function close(){ lb.classList.remove('is-open'); lb.setAttribute('aria-hidden','true'); imgTarget.src = ''; document.removeEventListener('keydown', onKey); }
+      function onKey(e){ if(e.key === 'Escape') close(); }
+
+      imgs.forEach(el=>{ el.addEventListener('click', ()=> open(el.currentSrc || el.src, el.alt)); });
+      lb.addEventListener('click', (e)=>{ if(e.target === lb) close(); });
+      closeBtn.addEventListener('click', close);
+    })();
+  </script>
+</body>
+</html>

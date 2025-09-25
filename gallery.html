@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gallery — Zero Gap (Merged: Movie 2-grid + spacing + fullscreen)</title>
+<style>
+  :root{
+--bg:#ffffff; --panel:#f8fafc; --muted:#64748b; --text:#1e293b;
+--ring:rgba(34,211,238,.35); --border:rgba(148,163,184,.2);
+--accent-shadow:0 10px 30px rgba(139,92,246,.2);
+--radius:16px; --radius-lg:24px; --maxw:1200px;
+--nav-h:76px; /* tinggi header statis */
+}
+*,::before,::after{box-sizing:border-box}
+html,body{height:100%}
+body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; color:var(--text);
+background:radial-gradient(circle at 20% -10%, rgba(34,211,238,.08), transparent 30%), radial-gradient(circle at 80% 0%, rgba(139,92,246,.08), transparent 30%), var(--bg);
+line-height:1.6; letter-spacing:.2px; padding-top:var(--nav-h) }
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+.container{max-width:var(--maxw); margin-inline:auto; padding-inline:20px}
+
+
+/* ======================== HEADER (HANYA BAGIAN INI YANG DIUBAH) ======================== */
+.nav{ position:fixed; top:0; left:0; right:0; height:var(--nav-h); z-index:200;
+backdrop-filter:saturate(1.2) blur(4px);
+background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92));
+border-bottom:1px solid var(--border) }
+.nav > .container{ padding-inline:clamp(8px,2vw,56px) }
+.nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; height:100%; }
+.brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.5px }
+.brand img{ width:56px; height:56px; object-fit:contain; border-radius:8px }
+
+
+
+/* menu diratakan ke TENGAH secara visual, sesuai contoh */
+.menu{ display:flex; align-items:center; justify-content:center; gap:20px; /* jarak antar item */
+justify-self:center }
+.menu a{ display:inline-block; padding:6px 10px; border-radius:10px; font-weight:600; color:#0f172a; opacity:.98;
+transition: background-color .2s ease, color .2s ease, transform .12s ease }
+.menu a:hover,.menu a:focus-visible{ background:#9bc6e7; color:#111827; transform:translateY(-1px); outline:none }
+
+
+/* tombol toggle tetap di pojok kanan saat mobile */
+.menu-toggle{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px; justify-self:end }
+
+
+@media (max-width:900px){
+.menu{ display:none }
+.menu.is-open{ display:flex; position:absolute; right:clamp(20px,4vw,56px); top:calc(var(--nav-h) + 8px);
+flex-direction:column; gap:12px; background:var(--panel); padding:14px; border:1px solid var(--border); border-radius:14px }
+.menu.is-open a{ width:100%; padding:10px 12px }
+.menu-toggle{ display:inline-flex }
+}
+
+  /* ======================== TOP BANNER ======================== */
+  .top-banner{position:relative; width:100%; background:#000}
+  .top-banner img{width:100%; height:clamp(220px, 42vh, 460px); object-fit:cover}
+  .top-banner .caption{position:absolute; inset:auto 16px 16px 16px; color:#fff; font-weight:700; letter-spacing:.06em; text-shadow:0 2px 12px rgba(0,0,0,.45)}
+  .top-banner .caption small{display:block; opacity:.9; font-weight:600}
+
+  /* ====== Footer ====== */
+  footer{padding:40px 0; border-top:1px solid var(--border); color:#64748b; background:#fff}
+  .foot{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center}
+  .social{display:flex; gap:12px}
+  .social .pill{ display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:999px; border:1px solid var(--border); background:#fff; color:#1e293b; transition:all .35s ease; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+  .social a[aria-label="Instagram"]:hover { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; transform:translateY(-3px) scale(1.08); box-shadow:0 6px 20px rgba(220,39,67,0.45); }
+  .social a[aria-label="Instagram"]:active { transform:scale(0.95); box-shadow:0 2px 8px rgba(220,39,67,0.35) inset; }
+  .social a[aria-label="YouTube"]:hover { background:#ff0000; color:#fff; transform:translateY(-3px) scale(1.08); box-shadow:0 6px 20px rgba(255,0,0,0.45); }
+  .social a[aria-label="YouTube"]:active { transform:scale(0.95); box-shadow:0 2px 8px rgba(255,0,0,0.35) inset; }
+
+  /* ===== PRE-FOOTER ===== */
+  .prefooter{ background:#f6f7f9; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .pre-grid{ max-width:var(--maxw); margin:0 auto; padding:24px 16px; display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+  .pre-col{ padding:18px 24px; background:#f6f7f9; }
+  .pre-col + .pre-col{ border-left:1px solid var(--border); }
+  .pre-title{ margin:0 0 14px; font-size:18px; letter-spacing:.22em; font-weight:800; color:#0b1220; text-transform:uppercase; }
+  .pre-list{ list-style:none; padding:0; margin:0; display:grid; gap:14px; }
+  .pre-list a{ font-weight:700; color:#0b1220; display:inline-block; padding:3px 0; transition:transform .15s ease, opacity .15s ease; }
+  .pre-list a:hover{ transform:translateX(2px); opacity:.9; }
+
+  /* ===== Base Vars (gallery) ===== */
+  :root{ --bg:#fff; --text:#0f172a; --border:rgba(148,163,184,.22); --gap-x:0; --gap-y:0; --radius:0; --maxw:1440px }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:8px 16px 40px}
+
+  /* ========== FILTERS: Text-only ========== */
+  .filters{ position:relative; top:auto; z-index:1; display:flex; flex-wrap:wrap; gap:12px 16px; padding:8px 0; background:transparent; border:0; }
+  .filters button{ appearance:none; background:transparent; color:var(--text); border:0; padding:4px 0; border-radius:0; box-shadow:none; cursor:pointer; transition:opacity .12s ease, text-decoration-color .12s ease; font-weight:500; }
+  .filters button:hover, .filters button:focus-visible{ text-decoration:underline; text-underline-offset:3px; }
+  .filters button.active{ font-weight:700; text-decoration:none; }
+
+  /* ========== Masonry ========== */
+  .masonry{column-count:2;column-gap:var(--gap-x)}
+  .item{break-inside:avoid;margin:0 0 var(--gap-y) 0;position:relative}
+  .item>a{display:block}
+  .item img,.item video{width:100%;border-radius:var(--radius)}
+  .chip{position:absolute;left:8px;top:8px;z-index:2;padding:4px 8px;border-radius:999px;background:rgba(15,23,42,.7);color:#fff;font-size:11px}
+
+  /* ========== Viewer ========== */
+  #viewer{width:min(1080px,95vw);border:0;padding:0;background:#000;color:#fff}
+  #viewer::backdrop{background:rgba(0,0,0,.55)}
+  .viewer-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 10px;background:rgba(15,23,42,.85)}
+  .viewer-body{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:#000}
+  .viewer-body img,.viewer-body video{width:100%;height:100%;object-fit:contain}
+  .x{appearance:none;border:0;background:#ef4444;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+
+  /* ===== MOVIE (2 kolom + bersih tulisan + spacing) ===== */
+  .item[data-cat="Movie"] .chip{ display:none !important; }
+  .masonry .item[data-cat="Movie"]{ margin:0 8px 12px; }
+  @media (max-width:900px){ .masonry .item[data-cat="Movie"]{ margin:0 6px 10px; } }
+  .item[data-cat="Movie"] video{ display:block; width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px; }
+
+  /* ===== ONLY FOR MENU ALL (hero cards) ===== */
+  .allHero{column-span:all;-webkit-column-span:all;margin:18px 0}
+  .allHero .card{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center;grid-template-areas:"media text"}
+  .allHero .card.reverse{grid-template-areas:"text media"}
+  .allHero .media{position:relative;grid-area:media}
+  .allHero .media img{width:100%;height:62vh;object-fit:cover;border-radius:0}
+  .allHero .media video{width:100%;height:62vh;object-fit:cover;border:0}
+  .allHero .label{position:absolute;left:10px;top:10px;color:#fff;font-weight:700;letter-spacing:.04em;font-size:22px;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+  .allHero .text{padding:6px 0;grid-area:text}
+  .allHero .text h2{margin:0 0 12px 0;letter-spacing:.06em;font-size:28px;font-weight:600;text-transform:uppercase}
+  .allHero .text p{margin:0 0 14px 0;line-height:1.6;letter-spacing:.03em;color:#111;font-size:14px;opacity:.95}
+  .allHero .btn{display:inline-block;background:#000;color:#fff;padding:14px 22px;border-radius:2px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  @media (max-width:900px){.allHero .card{grid-template-columns:1fr}.allHero .media img,.allHero .media video{height:44vh}}
+
+  /* 🔧 Override kecil untuk judul hero agar tetap kecil */
+  main.wrap .masonry .allHero .text h2{ font-size:22px; line-height:1.35; letter-spacing:.04em; margin-bottom:10px }
+  @media (max-width:900px){ main.wrap .masonry .allHero .text h2{ font-size:20px } }
+  @media (max-width:640px){ main.wrap .masonry .allHero .text h2{ font-size:18px } }
+</style>
+</head>
+<body>
+ 
+ <nav class="nav">
+    <div class="container nav-wrap">
+      <div class="brand">
+        <img src="assets/Logo_rri.jpg" alt="PT Rupa Raya Indonesia Logo" style="width:40px; height:55px; border-radius:5px; object-fit:contain;" />
+        <span> PT Rupa Raya Indonesia</span>
+      </div>
+
+      <!-- Google Translate Widget -->
+      <div id="google_translate_element" style="margin-left: auto; margin-right: 20px;"></div>
+
+      <button class="menu-toggle" aria-label="Menu" id="menuToggle">☰</button>
+      <div class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="company.html">Company</a>
+        <a href="team.html">Team</a>
+        <a href="servis.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================== TOP BANNER ======================== -->
+  <section class="top-banner" aria-label="Banner Galeri">
+    <img src="assets/Panorama1.jpg" alt="Zero Gap Gallery Hero" loading="eager" decoding="async" />
+  </section>
+
+  <main class="wrap" aria-label="Galeri Tanpa Celah">
+    <div class="filters" role="tablist" aria-label="Filter kategori">
+      <button class="active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button data-filter="interior" role="tab">Interior</button>
+      <button data-filter="eksterior" role="tab">Eksterior</button>
+      <button data-filter="Movie" role="tab">Movie</button>
+      <button data-filter="panorama" role="tab">Panorama</button>
+      <button data-filter="karya" role="tab">Karya Anak Bangsa</button>
+    </div>
+
+    <section class="masonry" id="masonry"></section>
+  </main>
+
+  <dialog id="viewer" aria-label="Pratinjau media">
+    <div class="viewer-head">
+      <div id="viewerTitle">Pratinjau</div>
+      <button class="x" id="closeViewer">Tutup ✕</button>
+    </div>
+    <div class="viewer-body" id="viewerBody"></div>
+  </dialog>
+
+  <!-- ===== Bubble WhatsApp ===== -->
+  <a id="waBubble" class="wa-bubble"
+     href="https://wa.me/6288804155370?text=Halo%20Kak%2C%20saya%20mau%20tanya%20Tentang%20PT%20Rupa%20Raya%20Indonesia"
+     target="_blank" rel="noopener" aria-label="Chat via WhatsApp">
+    <span class="wa-bubble__btn" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path fill="#fff" d="M26.2 5.8A12.2 12.2 0 0 0 4.6 22.7L3 29l6.5-1.7A12.2 12.2 0 1 0 26.2 5.8Zm-5.4 17.6c-2 .0-3.9-.6-5.6-1.7-1.6-1-2.9-2.4-3.9-4.1-1-1.7-1.5-3.5-1.5-5.4 0-.6.1-1.2.3-1.8.2-.6.7-1 1.3-1.1.3-.1.6 0 .9.1l2.1.9c.2.1.4.3.5.5.1.2.1.5 0 .8l-.5 1.6c-.1.3-.1.6 0 .9.5 1.2 1.3 2.2 2.4 3 1 .7 2.1 1.2 3.3 1.4.3.1.6 0 .9-.1l1.6-.6c.2-.1.5-.1.8 0 .2.1.4.3.5.5l.9 2.2c.1.3.2.6.1.9-.1.6-.5 1.1-1.1 1.3-.6.3-1.3.4-2 .4Z"/>
+      </svg>
+    </span>
+    <span class="wa-bubble__label"></span>
+  </a>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> PT Rupa Raya Indonesia • Semua hak cipta dilindungi</div>
+      <div class="social">
+        <a class="pill" href="https://www.instagram.com/ruparayaindonesia" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 4.25a5.25 5.25 0 1 1 0 10.5a5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5zm5.88-.88a1.13 1.13 0 1 1 0 2.26a1.13 1.13 0 0 1 0-2.26z"/></svg>
+        </a>
+        <a class="pill" href="https://www.youtube.com/@ruparaya" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 24 24"><path d="M23.498 6.186a2.99 2.99 0 0 0-2.106-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0 9.392-.566a2.99 2.99 0 0 0 2.106 2.12C24 8.09 24 12 24 12s0 3.91-.502 5.814a2.99 2.99 0 0 0 2.106 2.12C4.495 20.5 12 20.5 12 20.5s7.505 0 9.392-.566a2.99 2.99 0 0 0 2.106-2.12C24 15.91 24 12 24 12s0-3.91-.502-5.814zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  // ===== reference =====
+  const M = document.getElementById('masonry');
+  const Fallback = { interior:"https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1600&auto=format&fit=crop", eksterior:"https://images.unsplash.com/photo-1529429612779-c8e40ef2f36e?q=80&w=1600&auto=format&fit=crop", panorama:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop", karya:"https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600&auto=format&fit=crop" };
+
+  function fig(cat, inner, spanAll=false){
+    const f = document.createElement('figure');
+    f.className = 'item' + (spanAll ? ' span-all' : '');
+    f.dataset.cat = cat;
+    const chip = document.createElement('span');
+    chip.className = 'chip';
+    chip.textContent = cat[0].toUpperCase()+cat.slice(1);
+    f.appendChild(chip);
+    f.appendChild(inner);
+    return f;
+  }
+
+  function link(view, src, title, thumb){
+    const a = document.createElement('a');
+    a.href = '#';
+    a.dataset.view = view;      // 'img' | 'video'
+    a.dataset.src  = src;
+    a.dataset.title = title || '';
+    if(view==='img'){
+      const img = new Image();
+      img.src = thumb || src; img.alt = title || '';
+      img.loading = 'lazy'; img.decoding = 'async';
+      img.onerror = ()=>{ img.src = Fallback[a.closest('.item').dataset.cat]; };
+      a.appendChild(img);
+    } else if(view==='video'){
+      const v = document.createElement('video');
+      v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
+      const s = document.createElement('source'); s.src = src; s.type = 'video/mp4';
+      v.appendChild(s); a.appendChild(v);
+    }
+    return a;
+  }
+
+  function addImg(cat, src, title){ M.appendChild(fig(cat, link('img', src, title))); }
+
+  /* ===== Movie item sederhana (2-grid, tanpa teks) ===== */
+  function addMovie({src, title}){
+    const a = link('video', src, title);
+    M.appendChild(fig('Movie', a, false));
+  }
+
+  // ===== Hero (menu All) =====
+  function addAllHero({label,title,desc,imgSrc,details,reverse=false}){
+    const wrap = document.createElement('div');
+    wrap.className = 'item allHero';
+    wrap.dataset.cat = '__all__';
+
+    const card = document.createElement('div'); card.className='card' + (reverse ? ' reverse' : '');
+    const media = document.createElement('div'); media.className='media';
+
+    const norm = s=> (s||'').toLowerCase();
+    const isMovieCat = norm(details && details.cat) === 'movie' || /movie/i.test(label||'');
+    const isPanoramaCat = norm(details && details.cat) === 'panorama' || /panorama/i.test(label||'');
+    let mediaSrc = imgSrc || '';
+    if(isMovieCat){ mediaSrc = details.hero || mediaSrc; }
+
+    if(isPanoramaCat){
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://vrshowroom.jp/jhs/town/';
+      iframe.style.width = '100%';
+      iframe.style.height = '62vh';
+      iframe.style.border = 'none';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('allow', 'fullscreen; autoplay; vr; xr-spatial-tracking');
+      iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation allow-popups');
+      media.appendChild(iframe);
+    } else {
+      const isVideo = /.mp4($|\?)/i.test(mediaSrc||'');
+      if(isVideo){
+        const vid = document.createElement('video');
+        vid.src = mediaSrc; vid.setAttribute('muted',''); vid.muted = true; vid.autoplay = true; vid.loop = true; vid.playsInline = true; vid.preload = 'metadata';
+        media.appendChild(vid);
+      } else {
+        const img = new Image(); img.src = mediaSrc || imgSrc; img.alt = title||label; img.loading='lazy'; img.decoding='async'; media.appendChild(img);
+      }
+    }
+
+    const lab = document.createElement('div'); lab.className='label'; lab.textContent = label; media.appendChild(lab);
+
+    const text = document.createElement('div'); text.className='text';
+    const h2 = document.createElement('h2'); h2.textContent = title; text.appendChild(h2);
+    const p = document.createElement('p'); p.textContent = desc; text.appendChild(p);
+    const a = document.createElement('a'); a.href = '#'; a.className='btn'; a.textContent='See more';
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const cat = (details && details.cat) || label.toLowerCase();
+      const filterBtn = document.querySelector(`.filters button[data-filter="${cat}"]`);
+      if(filterBtn) filterBtn.click();
+    });
+    text.appendChild(a);
+
+    card.appendChild(media); card.appendChild(text);
+    wrap.appendChild(card);
+    if(document.querySelector('.allHero')){ M.appendChild(wrap); } else { M.insertAdjacentElement('afterbegin', wrap); }
+  }
+  addImg('interior','assets/interior/B_AFTER.jpg','Interior — B AFTER');
+
+  const ekNames = ['2_1.jpg','2_2.jpg','2_3.jpg','2_4.jpg','2_5.jpg','2_7.jpg','3 (1).jpg','4 (1).jpg','E-0599_ルシェール鹿手袋Ⅱ.jpg','E-1053_A3_瑞穂区十六町T1T2_夜景.jpg','E-1515_成瀬2丁目1区画_外観.jpg','ext_1_after.jpg','ext_3_after.jpg','F-0054_B3_安城市小川町ⅦT1_夜景.jpg','F-0117_Tamazen_西区又穂町ⅣT3T4.jpg','F-0385_上鶴間本町8丁目全7区画_外観_No. 1.jpg','F-0535_田原市ケンロック.jpg','F-0646_枚方市藤阪東町4-24-16　A号棟.jpg','F-0702_0308_Escon_ルシェール鳩ケ谷本町A号~J号.jpg','F-0855_トヨペット_01.jpg','F-0855_トヨペット_02.jpg','F-0891_規格住宅_Ext.jpg','flow_3.jpg','【最終】F-0461_箕面市西小路.jpg','【最終】F-0702_ルシェール鳩ケ谷本町A号~J号_B3夕景.jpg','【最終】F-0795_A3_大府市中央町T1T2T3.jpg'];
+  ekNames.forEach(n=>addImg('eksterior','assets/eksterior/'+n,'Eksterior — '+n.replace(/\.[^.]+$/,'')));
+
+  ['panorama1.jpg','panorama2.jpg'].forEach(n=>addImg('panorama','assets/panorama/'+n,'Panorama '+n.match(/\d+/)));
+
+  addMovie({ src:'assets/Movie/movie1.mp4', title:'Movie 1 — Showreel' });
+  addMovie({ src:'assets/Movie/movie2.mp4', title:'Movie 2 — Walkthrough' });
+
+  const intNames = ['a_after.jpg','b_after.jpg','d_after.jpg','interior1.png','interior3.jpg','interior4.jpeg','interior5.jpeg','interior6.jpeg','interior7.jpeg','interior8.jpeg','interior9.jpeg','interior10.jpeg','interior11.jpeg','interior12.jpeg','interior13.jpeg','interior14.jpeg','interior15.jpeg','interior16.jpeg','OIF.jpeg','OIP (1).jpeg','OIP (2).jpeg','OIP (3).jpeg','OIP.jpeg'];
+  intNames.forEach(n=>addImg('interior','assets/interior/'+n,'Interior — '+n.replace(/\.[^.]+$/,'')));
+  addImg('interior','assets/interior/interior1.jpg','Interior 01');
+
+  const karyaNames = ['2_1.jpg','2_2.jpg','2_3.jpg','2_4.jpg','2_5.jpg','ext_1_after.jpg','ext_3_after.jpg'];
+  karyaNames.forEach(n=>addImg('karya','assets/eksterior/'+n,'Karya — '+n.replace(/\.[^.]+$/,'')));
+
+  // ===== Hero cards for ALL (tetap) =====
+  addAllHero({
+    label:'INTERIOR',
+    title:'Bring architectural designs to life with stunning exterior 3D renderings. Showcase your projects in photorealistic detail from every angle',
+    desc:'',
+    imgSrc:'assets/interior/B_AFTER.jpg',
+    details:{
+      title:'3D Interior Visualization Services',
+      hero:'assets/interior/B_AFTER.jpg',
+      blocks:[
+        'Interior visualization is an art that helps designers communicate with clients and the community in the language of the project.',
+        'Our 3D interior rendering company has delivered 3D architectural interior visualization for the last 10 years for brands and studios worldwide.',
+        'Our 3D interior artists create realistic interior rendering and detail the atmosphere, mood and all elements of the whole picture as well as select the appropriate decor.'
+      ],
+      cat: 'interior',
+      label: 'INTERIOR'
+    },
+    reverse:false
+  });
+
+  addAllHero({
+    label:'EXTERIOR',
+    title:'Transform ideas into breathtaking interior visuals. See every detail of your design come alive with vibrant and realistic 3D renderings',
+    desc:'',
+    imgSrc:'assets/eksterior/2_1.jpg',
+    details:{
+      title:'3D Exterior Visualization Services',
+      hero:'assets/eksterior/2_1.jpg',
+      blocks:[
+        'Exterior CGI brings architectural designs to life and communicates scale, materials, and context.',
+        'We focus on photorealistic lighting and composition to showcase your project from every angle.',
+        'From urban masterplans to single-family houses, we deliver compelling visuals for approvals and marketing.'
+      ],
+      cat: 'eksterior',
+      label: 'EXTERIOR'
+    },
+    reverse:true
+  });
+
+  addAllHero({
+    label:'MOVIE',
+    title:'Architectural movies that capture light, material, and space through cinematic sequences and smooth camera work.',
+    desc:'',
+    imgSrc:'',
+    details:{
+      title:'Architectural Movie Showreels',
+      hero:'assets/Movie/movie2.mp4',
+      blocks:[
+        'We produce cinematic walkthroughs and showreels to present your architecture with mood and storytelling.',
+        'From storyboard to final color grading, we craft sequences that highlight design intent and atmosphere.'
+      ],
+      cat: 'Movie',
+      label: 'MOVIE'
+    },
+    reverse:false
+  });
+
+  addAllHero({
+    label:'PANORAMA',
+    title:'Immersive 360° panoramas that let viewers explore the design from every angle and understand spatial relations.',
+    desc:'',
+    imgSrc:'assets/panorama/panorama1.jpg',
+    details:{
+      title:'360° Panorama Experiences',
+      hero:'assets/panorama/panorama1.jpg',
+      blocks:[
+        'Panoramas help clients immerse themselves in the project and make confident decisions.',
+        'We deliver high-resolution 360° images suitable for web embeds and VR previews.'
+      ],
+      cat: 'panorama',
+      label: 'PANORAMA'
+    },
+    reverse:true
+  });
+
+  addAllHero({
+    label:'KARYA ANAK BANGSA',
+    title:'Showcasing local creativity with photoreal 3D visualizations that celebrate Indonesian design and craft.',
+    desc:'',
+    imgSrc:'assets/eksterior/2_3.jpg',
+    details:{
+      title:'Karya Anak Bangsa',
+      hero:'assets/eksterior/2_3.jpg',
+      blocks:[
+        'A curated collection focusing on Indonesian talent across interiors, products, and public spaces.',
+        'Rendered with attention to materiality, light, and cultural context to bring each story to life.'
+      ],
+      cat:'karya',
+      label:'KARYA ANAK BANGSA'
+    },
+    reverse:false
+  });
+
+  // ===== Filter logic (tetap) =====
+  const btns = document.querySelectorAll('.filters [data-filter]');
+  const items = () => document.querySelectorAll('.masonry .item');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{
+    const k = btn.dataset.filter;
+    document.querySelectorAll('video').forEach(v=>v.pause());
+    btns.forEach(b=>b.classList.toggle('active', b===btn));
+    items().forEach(it=>{
+      const cat = it.dataset.cat;
+      if(k==='all'){
+        it.style.display = (cat==='__all__') ? 'block' : 'none';
+      }else{
+        it.style.display = (cat===k) ? 'block' : 'none';
+      }
+    });
+    const m = document.getElementById('masonry');
+    m.style.columnGap = '0.0001px';
+    requestAnimationFrame(()=>m.style.columnGap='0px');
+  }));
+
+  // Default: ALL
+  (function initAll(){
+    const allBtn = document.querySelector('.filters [data-filter="all"]');
+    if(allBtn) allBtn.click();
+  })();
+
+  // ===== Viewer (klik -> fullscreen) =====
+  const dlg=document.getElementById('viewer'), body=document.getElementById('viewerBody'), ttl=document.getElementById('viewerTitle');
+  M.addEventListener('click', async (e)=>{
+    const a = e.target.closest('a[data-view]');
+    if(!a) return;
+    e.preventDefault();
+    ttl.textContent = a.dataset.title || '';
+    body.innerHTML = '';
+    if(a.dataset.view==='img'){
+      const i=new Image(); i.src=a.dataset.src; i.alt=ttl.textContent; i.loading='eager'; i.style.maxWidth='100%'; i.style.maxHeight='100%'; body.appendChild(i);
+      if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+    }else if(a.dataset.view==='video'){
+      const v=document.createElement('video'); v.controls=true; v.autoplay=true; v.playsInline=true; v.preload='metadata'; v.style.width='100%'; v.style.height='100%'; v.style.objectFit='contain';
+      const s=document.createElement('source'); s.src=a.dataset.src; s.type='video/mp4'; v.appendChild(s); body.appendChild(v);
+      if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+      try{ await v.requestFullscreen(); }catch(_){ /* ignore */ }
+    }
+  });
+  document.getElementById('closeViewer').addEventListener('click', ()=>{ body.querySelectorAll('video').forEach(v=>{v.pause(); v.currentTime=0}); if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+  dlg.addEventListener('cancel',()=>document.getElementById('closeViewer').click());
+  dlg.addEventListener('click', e=>{ if(e.target===dlg) document.getElementById('closeViewer').click(); });
+
+  // ===== Footer utils =====
+  (function(){
+    var yEl = document.getElementById('year'); if(yEl) yEl.textContent = new Date().getFullYear();
+    var toggle = document.getElementById('menuToggle');
+    var menu = document.getElementById('menu');
+    if(toggle && menu){ toggle.addEventListener('click', ()=> menu.classList.toggle('is-open')); }
+    var NUMBER  = "6288804155370"; 
+    var MESSAGE = "Halo Kak, saya mau tanya Tentang PT Rupa Raya Indonesia";
+    var SIDE    = "right";
+    var a = document.getElementById("waBubble");
+    if (a){
+      var raw = (NUMBER||"").replace(/[^\d]/g,"");
+      if (/^0/.test(raw)) raw = raw.replace(/^0/, "62");
+      var enc = encodeURIComponent(MESSAGE||"");
+      var urlWeb  = "https://wa.me/" + raw + "?text=" + enc;
+      var urlAPI  = "https://api.whatsapp.com/send?phone=" + raw + "&text=" + enc;
+      var urlDeep = "whatsapp://send?phone=" + raw + "&text=" + enc;
+      a.href = urlWeb;
+      if (SIDE === "left") { a.style.right = "auto"; a.style.left = "20px"; }
+      a.addEventListener("click", function(e){
+        var isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+        if (isMobile) {
+          e.preventDefault();
+          var t = Date.now();
+          window.location.href = urlDeep;
+          setTimeout(function(){ if (Date.now() - t < 1500) window.location.href = urlAPI; }, 1200);
+          return;
+        }
+        e.preventDefault();
+        window.location.href = "https://web.whatsapp.com/send?phone=" + raw + "&text=" + enc;
+      }, false);
+    }
+  })();
+  </script>
+</body>
+</html>

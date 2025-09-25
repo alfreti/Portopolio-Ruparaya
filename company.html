@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company | PT RUPA RAYA Indonesia</title>
+  <meta name="theme-color" content="#0b0f1a" />
+  <meta name="description" content="Profil perusahaan PT Rupa Raya Indonesia: CG perspektif, 3D modeling, VR/AR, dan animasi." />
+
+  <!-- Google Translate (sama seperti halaman utama) -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'en,ja,zh-CN,ko,ar,hi,de,fr,es,pt,it,nl,ru,th,vi,ms',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <style>
+   :root{
+      --bg:#ffffff;
+      --panel:#f8fafc;
+      --muted:#64748b;
+      --text:#1e293b;
+      --ring:rgba(34,211,238,.35);
+      --border:rgba(148,163,184,.2);
+      --accent-shadow:0 10px 30px rgba(139,92,246,.2);
+      --radius:16px;
+      --radius-lg:24px;
+      --maxw:1200px;
+    }
+    *,::before,::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color:var(--text); background:radial-gradient(circle at 20% -10%, rgba(34,211,238,.08), transparent 30%),
+                         radial-gradient(circle at 80% 0%, rgba(139,92,246,.08), transparent 30%),
+                         var(--bg);
+      line-height:1.6; letter-spacing:.2px;
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--maxw); margin-inline:auto; padding-inline:20px}
+
+    /* ========================
+       Navigation
+       ======================== */
+    .nav{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(4px);
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92));
+      border-bottom:1px solid var(--border);
+    }
+    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.5px }
+
+    .menu{ display:flex; align-items:center; gap:20px }
+    .menu a{ opacity:.9; font-weight:500 }
+    .menu a:hover{ opacity:1 }
+    .menu-toggle{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px }
+    @media (max-width:900px){
+      .menu{ display:none }
+      .menu.is-open{ display:flex; position:absolute; right:16px; top:60px; flex-direction:column; gap:12px; background:var(--panel); padding:14px; border:1px solid var(--border); border-radius:14px }
+      .menu-toggle{ display:inline-flex }
+      .about-extra{margin-top:30px; display:flex; gap:20px; align-items:center;}
+      .about-extra img{width:160px; height:160px; border-radius:20px; object-fit:cover; border:2px solid var(--border);}
+    }
+
+ 
+    .nav{
+      position:fixed; top:0; left:0; right:0; height:var(--nav-h);
+      z-index:200; 
+      backdrop-filter:saturate(1.2) blur(4px);
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92));
+      border-bottom:1px solid var(--border);
+    }
+    .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; height:100%; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.5px }
+    .menu{ display:flex; align-items:center; gap:20px }
+    .menu a{ opacity:.9; font-weight:500 } .menu a:hover{ opacity:1 }
+    .menu-toggle{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px }
+    @media (max-width:900px){
+      .menu{ display:none }
+      .menu.is-open{
+        display:flex; position:absolute; right:16px; top:calc(var(--nav-h) + 8px);
+        flex-direction:column; gap:12px; background:var(--panel); padding:14px; border:1px solid var(--border); border-radius:14px
+      }
+      .menu-toggle{ display:inline-flex }
+      .about-extra{margin-top:30px; display:flex; gap:20px; align-items:center;}
+      .about-extra img{width:160px; height:160px; border-radius:20px; object-fit:cover; border:2px solid var(--border);}
+    }
+
+    .menu{
+  display:flex; align-items:center; gap:20px;
+}
+.menu a{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:600;
+  color:#0f172a;
+  text-decoration:none;
+  transition: background-color .2s ease, color .2s ease, transform .12s ease, box-shadow .2s ease;
+}
+.menu a:hover,
+.menu a:focus-visible{
+  background:#9bc6e7;         
+  color:#111827;              
+  transform:translateY(-1px);
+  outline:none;
+}
+
+@media (max-width:900px){
+  .menu.is-open a{
+    width:100%;
+    padding:10px 12px;
+  }
+}
+    /* ====== Footer (disamakan) ====== */
+    footer{padding:40px 0; border-top:1px solid var(--border); color:#64748b; background:#fff}
+    .foot{display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center}
+    .social{display:flex; gap:12px}
+    .social .pill{ display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:999px; border:1px solid var(--border); background:#fff; color:#1e293b; transition:all .35s ease; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+    .social a[aria-label="Instagram"]:hover { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; transform:translateY(-3px) scale(1.08); box-shadow:0 6px 20px rgba(220,39,67,0.45); }
+    .social a[aria-label="Instagram"]:active { transform:scale(0.95); box-shadow:0 2px 8px rgba(220,39,67,0.35) inset; }
+    .social a[aria-label="YouTube"]:hover { background:#ff0000; color:#fff; transform:translateY(-3px) scale(1.08); box-shadow:0 6px 20px rgba(255,0,0,0.45); }
+    .social a[aria-label="YouTube"]:active { transform:scale(0.95); box-shadow:0 2px 8px rgba(255,0,0,0.35) inset; }
+
+    /* ===== Bubble WhatsApp (disamakan) ===== */
+    .wa-bubble { position:fixed; bottom:20px; right:20px; z-index:99999; display:inline-flex; align-items:center; gap:10px; text-decoration:none; user-select:none; font:600 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    .wa-bubble.left { left:20px; right:auto; }
+    .wa-bubble__btn { width:56px; height:56px; border-radius:999px; display:grid; place-items:center; background:#25D366; color:#fff; box-shadow:0 12px 30px rgba(37,211,102,.35), 0 2px 6px rgba(0,0,0,0.08); transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease; }
+    .wa-bubble__btn:active { transform: translateY(1px) scale(.98); }
+    @media (max-width:480px) { .wa-bubble__label { display:none; } }
+
+    /* ===== Konten halaman Company ===== */
+    .hero { padding: 44px 20px; text-align:center; background:#fff; }
+    .hero h1 { font-size:28px; margin:0 0 8px; }
+    .hero p { font-size:16px; color:#444; margin:0; }
+
+    .company { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; padding:36px 20px; background:#fff; }
+    .company div { flex:1; background:#fff; padding:14px; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,0.07); }
+    .company h2 { font-size:22px; margin:0 0 10px; color:#111; }
+    .company p { color:#333; font-size:15.5px; line-height:1.65; margin:0; }
+
+    .partners { padding:36px 20px; background:#fff; text-align:center; }
+    .partners h2 { font-size:24px; margin:0 0 12px; }
+    .partners p { margin:0 0 16px; color:#555; font-size:15.5px; }
+    .partner-logos { display:grid; grid-template-columns: repeat(7, 1fr); gap:16px; align-items:center; justify-items:center; }
+    .partner-logos img { width:68px; height:auto; margin:auto; filter:saturate(.9); }
+
+    @media(max-width:992px){ .partner-logos{ grid-template-columns: repeat(5, 1fr); } }
+    @media(max-width:768px){ .company { flex-direction:column; padding:24px 16px; gap:18px; } .partner-logos{ grid-template-columns: repeat(4, 1fr); gap:12px; } .partners{ padding:28px 16px; } .hero{ padding:36px 16px; } }
+    @media(max-width:520px){ .partner-logos{ grid-template-columns: repeat(3, 1fr); gap:10px; } .partner-logos img{ width:60px; } }
+
+    /* ========================
+       PRE-FOOTER (3 kolom — diseragamkan dgn screenshot)
+       ======================== */
+    .prefooter{ background:#f6f7f9; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .pre-grid{ max-width:var(--maxw); margin:0 auto; padding:34px 16px; display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+    .pre-col{ padding:18px 28px; background:#f6f7f9; }
+    .pre-col + .pre-col{ border-left:1.5px solid rgba(2,6,23,.12); }
+
+    .pre-title{ margin:0 0 22px; font-size:20px; letter-spacing:.24em; font-weight:800; color:#0b1220; text-transform:uppercase; }
+    .pre-list{ list-style:none; padding:0; margin:0; display:grid; gap:26px; }
+    .pre-list a{ font-weight:700; color:#0b1220; display:inline-block; padding:4px 0; font-size:18px; }
+    .pre-list a:hover{ opacity:.9; transform:translateX(2px); transition:transform .15s ease, opacity .15s ease; }
+
+    @media (max-width:900px){ .pre-grid{ grid-template-columns:1fr; padding:22px 16px; } .pre-col + .pre-col{ border-left:none; border-top:1.5px solid rgba(2,6,23,.12); } }
+
+    /* ========================
+       TOP BANNER — center image horizontally (and nicely scale)
+       ======================== */
+    .top-banner{ display:grid; place-items:center; background:#fff; padding:0; margin-top: 80px; }
+    .top-banner img{ display:block; margin:0 auto; max-width:min(1100px, 100%); height:auto; object-fit:contain; }
+  </style>
+</head>
+<body>
+  <!-- ===== Bubble WhatsApp (samakan antar-halaman) ===== -->
+  <a id="waBubble" class="wa-bubble" href="https://wa.me/6288804155370?text=Halo%20Kak%2C%20saya%20mau%20tanya%20Tentang%20PT%20Rupa%20Raya%20Indonesia" target="*_blank" rel="noopener" aria-label="Chat via WhatsApp">
+    <span class="wa-bubble__btn" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none"><path fill="#fff" d="M26.2 5.8A12.2 12.2 0 0 0 4.6 22.7L3 29l6.5-1.7A12.2 12.2 0 1 0 26.2 5.8Zm-5.4 17.6c-2 .0-3.9-.6-5.6-1.7-1.6-1-2.9-2.4-3.9-4.1-1-1.7-1.5-3.5-1.5-5.4 0-.6.1-1.2.3-1.8.2-.6.7-1 1.3-1.1.3-.1.6 0 .9.1l2.1.9c.2.1.4.3.5.5.1.2.1.5 0 .8l-.5 1.6c-.1.3-.1.6 0 .9.5 1.2 1.3 2.2 2.4 3 1 .7 2.1 1.2 3.3 1.4.3.1.6 0 .9-.1l1.6-.6c.2-.1.5-.1.8 0 .2.1.4.3.5.5l.9 2.2c.1.3.2.6.1.9-.1.6-.5 1.1-1.1 1.3-.6.3-1.3.4-2 .4Z"/></svg>
+    </span>
+    <span class="wa-bubble__label"></span>
+  </a>
+
+  <nav class="nav">
+    <div class="container nav-wrap">
+      <div class="brand">
+        <img src="assets/Logo_rri.jpg" alt="PT Rupa Raya Indonesia Logo" style="width:40px; height:55px; border-radius:5px; object-fit:contain;" />
+        <span> PT Rupa Raya Indonesia</span>
+      </div>
+
+      <!-- Google Translate Widget -->
+      <div id="google_translate_element" style="margin-left:auto; margin-right:20px;"></div>
+
+      <button class="menu-toggle" aria-label="Menu" id="menuToggle">☰</button>
+      <div class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="company.html">Company</a>
+        <a href="team.html">Team</a>
+        <a href="servis.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================== TOP BANNER ======================== -->
+  <section class="top-banner" aria-label="Banner Galeri">
+    <img src="assets/company1.png" alt="Zero Gap Gallery Hero" loading="eager" decoding="async" />
+  </section>
+
+  <!-- ======================== COMPANY STORY ======================== -->
+  <section class="company">
+    <div>
+      <h2>WHY CHOOSE PT RUPA RAYA?</h2>
+      <p>Kami ahli di desain, kreativitas, teknologi, komunikasi, dan memahami kebutuhan klien. Tim seniman 3D kami perfeksionis dengan gaya unik—selalu menarget hasil terbaik untuk tiap proyek.</p>
+    </div>
+    <div>
+      <h2>OUR STORY</h2>
+      <p>PT RUPA RAYA Indonesia lahir dari semangat menggabungkan seni dan teknologi. Kami berkolaborasi dengan sekolah, kampus, dan institusi di lebih dari <b>25+ wilayah</b>, mengerjakan <b>1000+</b> proyek dengan <b>7300+</b> karya visual.</p>
+    </div>
+  </section>
+
+  <!-- ======================== PARTNERS ======================== -->
+  <section class="partners">
+    <h2>OUR PARTNERS</h2>
+    <p>Kami telah bekerja sama dengan berbagai sekolah dan universitas di Makassar maupun luar Makassar.</p>
+
+    <div class="partner-logos">
+      <img src="assets/logo/logoSMKN4GOWA.png" alt="SMKN 4 Gowa">
+      <img src="assets/logo/logoSMKN2GOWA.png" alt="SMKN 3 Gowa">
+      <img src="assets/logo/logoSMKN2MKS.png" alt="SMKN 2 Makassar">
+      <img src="assets/logo/logoSMKN2PINRANG.png" alt="SMKN 2 PINRANG">
+      <img src="assets/logo/logoSMKN3GOWA.png" alt="SMKN 3 GOWA">
+      <img src="assets/logo/logoSMKN3MKS.png" alt="SMKN 3 Makassar">
+      <img src="assets/logo/logoSMKN5MKS.png" alt="SMKN 5 Makassar">
+      <img src="assets/logo/logoPOLTEKPANGKEP.png" alt="Politeknik Pertanian Pangkajene Kepulauan">
+      <img src="assets/logo/logoSMAN8BLK.png" alt="SMAN 8 Bulukumba">
+      <img src="assets/logo/logoSMANSALUWUT.png" alt="SMAN 1 Luwu Utara">
+      <img src="assets/logo/logoYAYASANMERDEKAMKS.png" alt="Yayasan Wakaf Merdeka Perguruan Nasional Makassar">
+      <img src="assets/logo/logoTELKOM.png" alt="Telkom University">
+      <img src="assets/logo/logoUMI.png" alt="Universitas Muslim Indonesia">
+      <img src="assets/logo/logoUIN.png" alt="Universitas UIN Alauddin Makassar">
+      <img src="assets/logo/logoUNIFA.png" alt="Universitas Fajar">
+      <img src="assets/logo/logoUNIVHALUOLEO.png" alt="Universitas Halu Oleo">
+      <img src="assets/logo/logoUNIVPEPABRI.png" alt="Universitas Pebabri Makassar">
+      <img src="assets/logo/POLTEKMEDIA.png" alt="Politeknik Media Kreatif Makassar">
+      <img src="assets/logo/logoUNIVSAMRATULANGI.png" alt="Universitas Samratulangi Manado">
+      <img src="assets/logo/logoUNHAS.png" alt="Universitas Hasanuddin">
+      <img src="assets/logo/logoUHM.png" alt="Universitas Handayani Makassar">
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER (copy dari index) ======================== -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> PT Rupa Raya Indonesia • Semua hak cipta dilindungi</div>
+      <div class="social">
+        <a class="pill" href="https://www.instagram.com/ruparayaindonesia" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="18" height="18" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 4.25a5.25 5.25 0 1 1 0 10.5a5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5zm5.88-.88a1.13 1.13 0 1 1 0 2.26a1.13 1.13 0 0 1 0-2.26z"/></svg>
+        </a>
+        <a class="pill" href="https://www.youtube.com/@ruparaya" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 24 24"><path d="M23.498 6.186a2.99 2.99 0 0 0-2.106-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.392.566a2.99 2.99 0 0 0-2.106 2.12C0 8.09 0 12 0 12s0 3.91.502 5.814a2.99 2.99 0 0 0 2.106 2.12C4.495 20.5 12 20.5 12 20.5s7.505 0 9.392-.566a2.99 2.99 0 0 0 2.106-2.12C24 15.91 24 12 24 12s0-3.91-.502-5.814zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== SCRIPTS ======================== -->
+  <script>
+    // Tahun footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    toggle && toggle.addEventListener('click', ()=> menu.classList.toggle('is-open'));
+
+    // WhatsApp Smart Fallback (samakan)
+    (function(){
+      var NUMBER  = "6288804155370"; 
+      var MESSAGE = "Halo Kak, saya mau tanya Tentang PT Rupa Raya Indonesia";
+      var SIDE    = "right"; // "right" atau "left"
+
+      var a = document.getElementById("waBubble");
+      if (!a) return;
+
+      var raw = (NUMBER||"").replace(/[^\d]/g,"");
+      if (/^0/.test(raw)) raw = raw.replace(/^0/, "62");
+
+      var enc = encodeURIComponent(MESSAGE||"");
+      var urlWeb  = "https://wa.me/" + raw + "?text=" + enc;
+      var urlAPI  = "https://api.whatsapp.com/send?phone=" + raw + "&text=" + enc;
+      var urlDeep = "whatsapp://send?phone=" + raw + "&text=" + enc;
+
+      a.href = urlWeb;
+      if (SIDE === "left") { a.style.right = "auto"; a.style.left = "20px"; }
+
+      a.addEventListener("click", function(e){
+        var isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+        if (isMobile) {
+          e.preventDefault();
+          var t = Date.now();
+          window.location.href = urlDeep;
+          setTimeout(function(){ if (Date.now() - t < 1500) window.location.href = urlAPI; }, 1200);
+          return;
+        }
+        e.preventDefault();
+        window.location.href = "https://web.whatsapp.com/send?phone=" + raw + "&text=" + enc;
+      }, false);
+    })();
+  </script>
+</body>
+</html>
